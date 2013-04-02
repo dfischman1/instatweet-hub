@@ -1,2 +1,13 @@
 instatweet-hub
 ==============
+
+Group members: Leopold Spohngellert, Daniel Teehan, Daelin , and Patrick So
+
+Tasks (subject to change):
+Daniel:  Backend data storage
+Leopold: API and UI
+Daelin: Javascript/Design
+Patrick: Design
+
+What do we hope to accomplish by Friday?
+a plan for using the apis with a proof of campus and some basic html skeletons
