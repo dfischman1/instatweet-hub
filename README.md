@@ -10,4 +10,4 @@ Daelin: Javascript/Design
 Patrick: Design
 
 What do we hope to accomplish by Friday?
-a plan for using the apis with a proof of campus and some basic html skeletons
+a plan for using the apis with a proof of concept and some basic html skeletons
