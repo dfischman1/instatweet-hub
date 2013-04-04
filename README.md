@@ -1,7 +1,7 @@
 instatweet-hub
 ==============
 
-Group members: Leopold Spohngellert, Daniel Teehan, Daelin , and Patrick So
+Group members: Leopold Spohngellert, Daniel Teehan, Daelin Fischman, and Patrick So
 
 Tasks (subject to change):
 Daniel:  Backend data storage
