@@ -1,0 +1,51 @@
+
+
+from pymongo import Connection
+
+class db:
+    def __init__(self,db="roundtable"):
+        self.connection = Connection('mongo2.stuycs.org')
+        self.db=self.connection.admin
+        self.db.authenticate('ml7','ml7')
+        self.db = self.connection.roundtable
+        self.db.roundtable.save({})
+
+
+    def addUser(self, uname, password):
+        clct = self.db.roundtable
+        if len(list(clct.find({'username':uname})))==0:
+            clct.insert({'username':uname, 'password':password})
+        else:
+            print "username is already taken, try another"
+
+    def validate(self, uname, password):
+        clct = self.db.roundtable
+        if len(list(clct.find({'username':uname})))==1:
+            if len(list(clct.find({'username':uname,'password': password})))==1:
+                return True
+            else:
+                return "wrong password, try again"
+        else:
+            return "no such account exists, create a new account"
+
+    def changePass(self, uname, oldpass, newpass):
+        clct = self.db.roundtable
+        if len(list(clct.find({'username':uname,'password': oldpass})))==1:
+            clct.update({'username':uname,'password':oldpass},{'username':uname,'password':newpass})
+
+    def reset(self):
+        self.db.roundtable.drop()
+
+
+if __name__=="__main__":
+    db  = db()
+    db.addUser("daniel teehan", 'daelin')
+    db.addUser("Leopold","specswag")
+    db.addUser("Patrick", "cadabra")
+    db.addUser("Daelin","Nightlin")
+    db.addUser("Daelin","Nightlin")  #should not be allowed
+    print db.validate("Daelin","Nightlin")    #should be true
+    db.changePass('Daelin','Nightlin','Daylin')
+    print db.validate("Daelin", "Daylin")  #should be true, as pass has been changed
+    print db.validate("Daelin", "Nightlin") #should be false, as pass has been changed
+    db.reset()
