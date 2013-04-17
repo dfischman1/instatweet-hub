@@ -1,5 +1,4 @@
 
-
 from pymongo import Connection
 
 class db:
@@ -11,10 +10,10 @@ class db:
         self.db.roundtable.save({})
 
 
-    def addUser(self, uname, password):
+    def addUser(self, uname, password, fullname):
         clct = self.db.roundtable
         if len(list(clct.find({'username':uname})))==0:
-            clct.insert({'username':uname, 'password':password})
+            clct.insert({'username':uname, 'password':password, 'full': fullname})
         else:
             print "username is already taken, try another"
 
