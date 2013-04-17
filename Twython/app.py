@@ -5,6 +5,7 @@ from flask import url_for,redirect,flash
 from flask import session, escape
 import requests
 import twyth
+import storage
 
 app = Flask(__name__)
 
@@ -15,11 +16,21 @@ app.debug=True
 
 
 
-
-
-@app.route('/')
+@app.route('/', methods= ['GET', 'POST'])
 def default():
-     return render_template('index.html')
+    if request.method == 'GET':
+        return render_template('homepage.html')
+    else:
+        user = request.form['username']
+        password = request.form['password']
+        results = storage.validate(user, password)
+        if results:
+            return redirect(url_for('www.nytimes.com'))
+        else:
+            return render_template('homepage.html')
+
+            
+        
 
      
 
