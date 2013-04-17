@@ -1,4 +1,3 @@
-
 from pymongo import Connection
 
 class db:
@@ -8,7 +7,8 @@ class db:
         self.db.authenticate('ml7','ml7')
         self.db = self.connection.roundtable
         self.db.roundtable.save({})
-
+    
+    self.db.roundtable.insert({'username':'Teehan', 'password':'devyldogs','full':'Daniel Teehan'})
 
     def addUser(self, uname, password, fullname):
         clct = self.db.roundtable
