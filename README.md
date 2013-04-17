@@ -25,3 +25,5 @@ Update: We are now aiming to set up our registration system including data manag
 
 
 This involves further development of the html and javascript to go along with it
+
+update (4/16): FIGURED OUT HOW TO DO TWITTER AUTHEN. App.py and templates are currently in the Twython folder. Will work on making it more organized. 
