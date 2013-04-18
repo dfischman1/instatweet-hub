@@ -3,8 +3,8 @@ from flask import request
 from flask import render_template
 from flask import url_for,redirect,flash
 from flask import session, escape
-import requests
-import twyth
+#import requests
+#import twyth
 import storage
 
 app = Flask(__name__)
@@ -23,13 +23,17 @@ def default():
     else:
         user = request.form['username']
         password = request.form['password']
-        results = storage.validate(user, password)
+        results = storage.validate(self, user, password)
         if results:
-            return redirect(url_for('www.nytimes.com'))
+            return redirect(url_for('index'))
         else:
-            return render_template('homepage.html')
+            return render_template('homepage.html', results = results)
 
-            
+
+@app.route('/index', methods= ['GET'])
+def index():
+    return render_template ('index.html')
+
         
 
      
