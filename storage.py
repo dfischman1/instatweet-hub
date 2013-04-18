@@ -7,8 +7,7 @@ class db:
         self.db.authenticate('ml7','ml7')
         self.db = self.connection.roundtable
         self.db.roundtable.save({})
-    
-    self.db.roundtable.insert({'username':'Teehan', 'password':'devyldogs','full':'Daniel Teehan'})
+        self.db.roundtable.insert({'username':'Teehan', 'password':'devyldogs','full':'Daniel Teehan'})
 
     def addUser(self, uname, password, fullname):
         clct = self.db.roundtable
@@ -38,11 +37,11 @@ class db:
 
 if __name__=="__main__":
     db  = db()
-    db.addUser("daniel teehan", 'daelin')
-    db.addUser("Leopold","specswag")
-    db.addUser("Patrick", "cadabra")
-    db.addUser("Daelin","Nightlin")
-    db.addUser("Daelin","Nightlin")  #should not be allowed
+    db.addUser("daniel teehan", 'daelin', 'daelin fisch')
+    db.addUser("Leopold","specswag", "leo spon")
+    db.addUser("Patrick", "cadabra", " P Soup")
+    db.addUser("Daelin","Nightlin", "Night Lin")
+    db.addUser("Daelin","Nightlin", "Night")  #should not be allowed
     print db.validate("Daelin","Nightlin")    #should be true
     db.changePass('Daelin','Nightlin','Daylin')
     print db.validate("Daelin", "Daylin")  #should be true, as pass has been changed
