@@ -4,7 +4,7 @@ from flask import render_template
 from flask import url_for,redirect,flash
 from flask import session, escape
 #import requests
-#import twyth
+import twyth
 import storage
 
 app = Flask(__name__)
@@ -30,7 +30,7 @@ def default():
             return render_template('homepage.html', results = results)
 
 
-@app.route('/index', methods= ['GET'])
+@app.route('/index')
 def index():
     return render_template ('index.html')
 
