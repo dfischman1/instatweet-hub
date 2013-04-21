@@ -9,10 +9,10 @@ class db:
         self.db.roundtable.save({})
         self.db.roundtable.insert({'username':'Teehan', 'password':'devyldogs','full':'Daniel Teehan'})
 
-    def addUser(self, uname, password, fullname):
+    def addUser(self, uname, password, fullname, tuname):
         clct = self.db.roundtable
         if len(list(clct.find({'username':uname})))==0:
-            clct.insert({'username':uname, 'password':password, 'full': fullname})
+            clct.insert({'username':uname, 'password':password, 'full': fullname, 'tuname':tuname})
         else:
             print "username is already taken, try another"
 
@@ -37,11 +37,11 @@ class db:
 
 if __name__=="__main__":
     db  = db()
-    db.addUser("daniel teehan", 'daelin', 'daelin fisch')
-    db.addUser("Leopold","specswag", "leo spon")
-    db.addUser("Patrick", "cadabra", " P Soup")
-    db.addUser("Daelin","Nightlin", "Night Lin")
-    db.addUser("Daelin","Nightlin", "Night")  #should not be allowed
+    db.addUser("daniel teehan", 'daelin', 'daelin fisch', "@dfisch")
+    db.addUser("Leopold","specswag", "leo spon", "@leo")
+    db.addUser("Patrick", "cadabra", " P Soup", "@sarpshark")
+    db.addUser("Daelin","Nightlin", "Night Lin", "@nightlin")
+    db.addUser("Daelin","Nightlin", "Night", "@night")  #should not be allowed
     print db.validate("Daelin","Nightlin")    #should be true
     db.changePass('Daelin','Nightlin','Daylin')
     print db.validate("Daelin", "Daylin")  #should be true, as pass has been changed
