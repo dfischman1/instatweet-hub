@@ -6,6 +6,7 @@ from flask import session, escape
 #import requests
 #import twyth
 import storage
+db = storage.db()
 
 app = Flask(__name__)
 
@@ -21,10 +22,11 @@ def default():
     if request.method == 'GET':
         return render_template('homepage.html')
     else:
+        results = 2
         user = request.form['username']
         password = request.form['password']
-        results = storage.validate(self, user, password)
-        if results:
+        results = db.validate(user, password)
+        if results == True:
             return redirect(url_for('index'))
         else:
             return render_template('homepage.html', results = results)
