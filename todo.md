@@ -8,5 +8,5 @@ Daelin
 __________________
 
 1. **instagram api** stuff
-2. AJAX JSON shiiiiiiiiit
+2. AJAX JSON 
 
