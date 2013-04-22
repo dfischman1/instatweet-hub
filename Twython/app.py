@@ -5,7 +5,7 @@ from flask import url_for,redirect,flash
 from flask import session, escape
 #import requests
 #import twyth
-import tweets
+#import tweets
 import storage
 db = storage.db()
 
@@ -23,28 +23,30 @@ def default():
     if request.method == 'GET':
         return render_template('homepage.html')
     else:
-        results = 2
-        user = request.form['username']
-        password = request.form['password']
-        results = db.validate(user, password)
-        if results == True:
-            return redirect(url_for('index'))
+        button = request.form["Go"]
+        if button == "register":
+            return redirect( url_for("register"))
         else:
-            return render_template('homepage.html', results = results)
+            results = 2
+            user = request.form['username']
+            password = request.form['password']
+            results = db.validate(user, password)
+            if results == True:
+                return redirect(url_for('http://www.nytimes.com'))
+            else:
+                return render_template('homepage.html', results = results)
 
 
-@app.route('/index', methods= ['GET'])
-def index():
-    return render_template ('index.html')
+
+
+@app.route('/register', methods= ['GET', 'POST'])
+def register():
+    return render_template ('register.html')
 
         
 
      
 
-
-@app.route('/register')
-def register():
-    return render_template('register.html')
 
 
 import os
