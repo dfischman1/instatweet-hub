@@ -41,7 +41,10 @@ def default():
 
 @app.route('/register', methods= ['GET', 'POST'])
 def register():
-    return render_template ('register.html')
+    if request.method == 'GET':
+        return render_template('register.html')
+    else:
+        success = db.adduser(request.form['name'], request.form['username'], request.form['pswd'])
 
         
 
