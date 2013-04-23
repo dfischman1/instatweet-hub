@@ -44,7 +44,13 @@ def register():
     if request.method == 'GET':
         return render_template('register.html')
     else:
-        success = db.adduser(request.form['name'], request.form['username'], request.form['pswd'])
+        success = db.adduser(request.form['username'], request.form['pswd'], request.form['name'], request.form['twitterhandle'])
+        if success != None:
+            return redirect(url_for('http://www.nytimes.com'))
+        else:
+            return render_template('register.html', success = success)
+        
+            
 
         
 
