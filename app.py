@@ -5,7 +5,7 @@ from flask import url_for,redirect,flash
 from flask import session, escape
 #import requests
 #import twyth
-import pythontwitter2.tweets
+import pythontwitter2
 import storage
 
 app = Flask(__name__)
