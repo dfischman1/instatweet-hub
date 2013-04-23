@@ -1,8 +1,6 @@
-{% extends 'homepage.html' %}
-
+<!DOCTYPE html>
 <html>
 <head> 
-{% block head %}
 <link href="stylestuff.css" rel="stylesheet" type="text/css">
 <title> Register </title>
 <style>
@@ -13,27 +11,29 @@ h4 { text-align:center;}
 <script>
 </script>
 </head>
-{% endblock head %}
 
 
-{% block body %}
 <h1> Register </h1>
-{{ success }}
+
+
 <h2> Basics </h2>
+
+<form action= ""  method= "post">
 Full Name: <input type = "text" id "name"></input><br>
 Roundtable Username: <input type = "text" id = "username">
 </input><br>
 Password: <input type = "text" id = "pswd"></input><br>
-Twitter Handle: <input type = 'text' id = 'twitterhandle'></input>
 
 <h2> Twitter Information </h2> 
 In order to create a feed of tweets you must provide your Roundtable's twitter usernames and passwords. All your information will remain private. 
 
- <form action={{auth_url}} method= "POST">
-  <b>Click here to login with twitter:</b>
-  <input type="submit" value="Login">
-</form>
+<br>
+<b>Enter your twitter username (must be a public account):</b>
+<input type="text" id ="twitter">
+<button type = "submit" value = "Submit" name = "Submit">Submit </button>
 
 
 <h2> Instagram Information </h2>
-{% endblock body %}
+
+
+</form>

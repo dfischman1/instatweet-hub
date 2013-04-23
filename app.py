@@ -5,9 +5,8 @@ from flask import url_for,redirect,flash
 from flask import session, escape
 #import requests
 #import twyth
-#import tweets
+import pythontwitter2.tweets
 import storage
-db = storage.db()
 
 app = Flask(__name__)
 
@@ -23,39 +22,27 @@ def default():
     if request.method == 'GET':
         return render_template('homepage.html')
     else:
-        button = request.form["Go"]
-        if button == "register":
-            return redirect( url_for("register"))
+        user = request.form['username']
+        password = request.form['password']
+        results = storage.validate(self, user, password)
+        if results:
+            return redirect(url_for('index'))
         else:
-            results = 2
-            user = request.form['username']
-            password = request.form['password']
-            results = db.validate(user, password)
-            if results == True:
-                return redirect(url_for('http://www.nytimes.com'))
-            else:
-                return render_template('homepage.html', results = results)
+            return render_template('homepage.html', results = results)
 
 
-
-
-@app.route('/register', methods= ['GET', 'POST'])
-def register():
-    if request.method == 'GET':
-        return render_template('register.html')
-    else:
-        success = db.adduser(request.form['username'], request.form['pswd'], request.form['name'], request.form['twitterhandle'])
-        if success != None:
-            return redirect(url_for('http://www.nytimes.com'))
-        else:
-            return render_template('register.html', success = success)
-        
-            
+@app.route('/index', methods= ['GET'])
+def index():
+    return render_template ('index.html')
 
         
 
      
 
+
+@app.route('/register')
+def register():
+    return render_template('register.html')
 
 
 import os
