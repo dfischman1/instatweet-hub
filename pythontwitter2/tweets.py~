@@ -1,0 +1,18 @@
+import twitter
+
+
+get_tweets(username):
+api = twitter.Api()
+app_key = 'LvMwTBueTS3IsN7sLIoaIA'
+app_secret = '0cdq8IZwccRMBPrwH9odVoCUaeLSH4RSx9df4'
+access_token = '295398619-lSehg93ixJJ80M4DyOtwpSsmnFzP70Ld4bpRInXm'
+access_token_secret = 'BttSbnwFY14Ysa68d5Xxcy3ZKi8eUgevNLgxq9Xo'
+
+api = twitter.Api(consumer_key='consumer_key',
+                  consumer_secret='consumer_secret',
+                  access_token_key='access_token',
+                  access_token_secret='access_token_secret')
+
+statuses = api.GetUserTimeline('nytimes')
+text = [s.text for s in statuses]
+
