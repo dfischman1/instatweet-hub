@@ -4,8 +4,7 @@ from flask import render_template
 from flask import url_for,redirect,flash
 from flask import session, escape
 #import requests
-#import twyth
-import pythontwitter2
+import pythontwitter2.tweets
 import storage
 
 app = Flask(__name__)
@@ -13,7 +12,7 @@ app = Flask(__name__)
 
 app.debug=True
 
-
+pythontwitter2.tweets.get_easy('nytimes', 'a')
 
 
 
@@ -30,7 +29,7 @@ def login():
 	if res == 1:
 	    return redirect(url_for("search"))
         else:
-            return render_template('homepage.html', res = res)
+            return render_template('homepage.html', res = res, success = "")
 
 
 @app.route('/index', methods= ['GET'])
@@ -47,6 +46,8 @@ def register():
     if request.method == 'GET':
         return render_template('register.html')
     else:
+        terror = ""
+        uerror = ""
         uname = request.form['username']
         print uname
         password = request.form['pswd']
@@ -55,10 +56,24 @@ def register():
         print fullname
         tuname = request.form['twitter']
         print tuname
-        result = storage.addUser(uname, password, fullname, tuname)
-        print "Result" + str(result)
+        if pythontwitter2.tweets.check(tuname) == 1:
+            if storage.validate(uname, password) == 3:
+                result = storage.addUser(uname, password, fullname, tuname)
+            else:
+                uerror = "That username isn't valid. Try again"
+                result = 0
+
+        else:
+            terror = "Your twitter username isn't valid. Try again."
+            result = 0
         if result == 1:
+            success = "You succesfully created a new account!"
             return redirect(url_for("login"))
+        if result == 0:
+            return render_template('register.html',
+                                   terror = terror,
+                                   uerror = uerror)
+    
 
 @app.route('/search')
 def search():

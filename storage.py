@@ -24,6 +24,7 @@ def validate(uname, password):
         else:
             return 2
     else:
+        return 3
         return "no such account exists, create a new account"
 
 def changePass(uname, oldpass, newpass):
@@ -33,7 +34,7 @@ def changePass(uname, oldpass, newpass):
 def reset():
     clct.drop()
 
-reset()
+
 addUser('Daniel','dobby','Daniel Teehan', 'teeman')
 #print validate('Daniel', 'dobby')
 
