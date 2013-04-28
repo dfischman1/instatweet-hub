@@ -30,16 +30,18 @@ def changePass(uname, oldpass, newpass):
 
 def reset():
     clct.drop()
+addUser('Daniel','dobby','Daniel Teehan', 'teeman')
+#print validate('Daniel', 'dobby')
 
-
-if __name__=="__main__":
-    addUser("daniel teehan", 'daelin', 'daelin fisch', "@dfisch")
-    addUser("Leopold","specswag", "leo spon", "@leo")
-    addUser("Patrick", "cadabra", " P Soup", "@sarpshark")
-    addUser("Daelin","Nightlin", "Night Lin", "@nightlin")
-    addUser("Daelin","Nightlin", "Night", "@night")  #should not be allowed
-    print validate("Daelin","Nightlin")    #should be true
-    changePass('Daelin','Nightlin','Daylin')
-    print validate("Daelin", "Daylin")  #should be true, as pass has been changed
-    print validate("Daelin", "Nightlin") #should be false, as pass has been changed
-    reset()
+#if __name__=="__main__":
+#    addUser("daniel teehan", 'daelin', 'daelin fisch', "@dfisch")
+#    addUser("Leopold","specswag", "leo spon", "@leo")
+#    addUser("Patrick", "cadabra", " P Soup", "@sarpshark")
+#    addUser("Daelin","Nightlin", "Night Lin", "@nightlin")
+#    addUser("Daelin","Nightlin", "Night", "@night")  #should not be allowed
+#    print validate("Daelin","Nightlin")    #should be true
+#    changePass('Daelin','Nightlin','Daylin')
+#    print validate("Teehan", "devyldogs")
+#    print validate("Daelin", "Daylin")  #should be true, as pass has been changed
+#    print validate("Daelin", "Nightlin") #should be false, as pass has been changed
+#    reset()

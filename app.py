@@ -23,8 +23,11 @@ def default():
         return render_template('homepage.html')
     else:
         user = request.form['username']
+        print user
         password = request.form['password']
+        print password
         results = storage.validate(user, password)
+        print results
         if results:
             return redirect(url_for('index'))
         else:
