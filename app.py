@@ -18,13 +18,13 @@ app.debug=True
 CONFIG = {
     'client_id': '2e1ab1ca522343a589a4dc84eb31af41',
     'client_secret': '67b832ed8a9b4e67b8696a3db0a69fd2',
-    'redirect_uri': 'http://localhost:5000/search'
+    'redirect_uri': 'http://localhost:5000/instagram'
 }
 
 user_id = 0
 user_token= 0
 instagram_client = client.InstagramAPI(**CONFIG)
-user_hashtag = 'potato'
+user_hashtag = '#nationalsiblingday'
 
 def process_tag_update(update):
     print update
@@ -64,7 +64,7 @@ def index():
 def register():
     if request.method == 'GET':
         return render_template('register.html')
-    else:
+    elif request.form['Go'] == 'twitter':
         terror = ""
         uerror = ""
         uname = request.form['username']
@@ -75,6 +75,8 @@ def register():
         print fullname
         tuname = request.form['twitter']
         print tuname
+        #user_hashtag = request.form['hashtag']
+        #print user_hashtag
         if pythontwitter2.tweets.check(tuname) == 1:
             if storage.validate(uname, password) == 3:
                 result = storage.addUser(uname, password, fullname, tuname)
@@ -92,14 +94,10 @@ def register():
             return render_template('register.html',
                                    terror = terror,
                                    uerror = uerror)
-
-
- elif request.form['Go'] == 'twitter':       
-user_hashtag = request.form['hashtag']
-        storage.addUser(uname, password, fullname, tuname)
-        return render_template('register.html', message = "now login with instagram")
     else:
         return redirect(instagram_client.get_authorize_url(scope=['basic']))
+        
+
 
 
 
@@ -121,9 +119,10 @@ def instagram():
         return render_template('homepage.html', res = res)
     user_id = instagram_user['id']
     user_token = access_token
-    print user_id + 'YAY!'
-    images = instagramhub.get_pics(user_id, user_token)
-    return render_template('instagram.html', images = images)
+    print user_id + user_hashtag + 'YAY!'
+    taggedimages = instagramhub.get_pics(user_id, user_token, user_hashtag)
+    print taggedimages
+    return render_template('instagram.html', images = taggedimages, user_hashtag = user_hashtag)
         #deferred.defer(fetch_instagram_for_user, g.user.get_id(), count=20, _queue='instagram')
     #except (RuntimeError, TypeError, NameError):
     #    print "poops"
