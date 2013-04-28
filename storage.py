@@ -18,9 +18,9 @@ def addUser(uname, password, fullname, tuname):
 def validate(uname, password):
     if len(list(clct.find({'username':uname})))==1:
         if len(list(clct.find({'username':uname,'password': password})))==1:
-            return True
+            return 1
         else:
-            return "wrong password, try again"
+            return 2
     else:
         return "no such account exists, create a new account"
 

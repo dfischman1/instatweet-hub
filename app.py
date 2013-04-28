@@ -23,15 +23,14 @@ def default():
         return render_template('homepage.html')
     else:
         user = request.form['username']
-        print user
         password = request.form['password']
-        print password
-        results = storage.validate(user, password)
-        print results
-        if results:
-            return redirect(url_for('index'))
+        res = 0
+	if user and password:
+	    res = storage.validate(user, password)
+	if res == 1:
+	    return redirect(url_for("search"))
         else:
-            return render_template('homepage.html', results = results)
+            return render_template('homepage.html', res = res)
 
 
 @app.route('/index', methods= ['GET'])
