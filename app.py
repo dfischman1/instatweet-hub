@@ -17,8 +17,8 @@ app.debug=True
 
 
 
-@app.route('/', methods= ['GET', 'POST'])
-def default():
+@app.route('/login', methods= ['GET', 'POST'])
+def login():
     if request.method == 'GET':
         return render_template('homepage.html')
     else:
@@ -48,11 +48,17 @@ def register():
         return render_template('register.html')
     else:
         uname = request.form['username']
+        print uname
         password = request.form['pswd']
+        print password
         fullname = request.form['name']
+        print fullname
         tuname = request.form['twitter']
-        storage.addUser(uname, password, fullname, tuname)
-        redirect(url_for('search'))
+        print tuname
+        result = storage.addUser(uname, password, fullname, tuname)
+        print "Result" + str(result)
+        if result == 1:
+            return redirect(url_for("login"))
 
 @app.route('/search')
 def search():

@@ -12,8 +12,10 @@ clct=db.roundtable
 def addUser(uname, password, fullname, tuname):
     if len(list(clct.find({'username':uname})))==0:
         clct.insert({'username':uname, 'password':password, 'full': fullname, 'tuname':tuname})
+        return 1
     else:
         print "username is already taken, try another"
+        return 0
 
 def validate(uname, password):
     if len(list(clct.find({'username':uname})))==1:
@@ -30,6 +32,8 @@ def changePass(uname, oldpass, newpass):
 
 def reset():
     clct.drop()
+
+reset()
 addUser('Daniel','dobby','Daniel Teehan', 'teeman')
 #print validate('Daniel', 'dobby')
 
