@@ -24,7 +24,7 @@ def default():
     else:
         user = request.form['username']
         password = request.form['password']
-        results = storage.validate(self, user, password)
+        results = storage.validate(user, password)
         if results:
             return redirect(url_for('index'))
         else:
