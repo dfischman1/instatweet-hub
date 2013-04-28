@@ -43,4 +43,18 @@ def get_easy(username, hashtag):
     matches = get_hashtag(get_tweets(username), hashtag)
     return matches
 
+
+def check(username):
+    try:
+        get_tweets(username)
+        print "success!"
+        return 1
+    except:
+        print "twitter username doesn't exist"
+        return 0
+
 get_easy('mets', '#Mets')
+
+
+
+
