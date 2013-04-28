@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Find your table</title>
+</head>
+<body>
+<h1>
+Search for your table
+</h1>
+<input type="text" id="searchtext" style="text-align:center"></input>
+<input type="submit" id="search" value="Find it"></input>
+<div id="results">
+</div>
+<div id="mytables">
+<h2>
+My Tables
+</h2>
+</body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+function test(){
+$("#results").append($("#searchtext").val()+ "<br>");
+}
+$(document).ready( function(){
+$("#search").click(test);
+});
+</script>
+</html>
