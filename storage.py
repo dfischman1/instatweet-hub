@@ -9,9 +9,9 @@ db.roundtable.save({})
 db.roundtable.insert({'username':'Teehan', 'password':'devyldogs','full':'Daniel Teehan'})
 clct=db.roundtable
 
-def addUser(uname, password, fullname, tuname):
+def addUser(uname, password, fullname, tunames):
     if len(list(clct.find({'username':uname})))==0:
-        clct.insert({'username':uname, 'password':password, 'full': fullname, 'tuname':tuname, 'tweets': [], 'imgs': []})
+        clct.insert({'username':uname, 'password':password, 'full': fullname, 'tunames':tunames, 'tweets': [], 'imgs': []})
         return 1
     else:
         print "username is already taken, try another"
@@ -37,31 +37,35 @@ def reset():
 
 def addTweets(uname, hashtag):
     for post in clct.find({'username': uname}):
-        tuname = post['tuname']
-    matches = pythontwitter2.tweets.get_easy(tuname, hashtag)
-    for x in matches:
-        print x
-        clct.update({ 'username' : uname }, {'$addToSet': { 'tweets': x} })
+        tunames = post['tunames']
+        for i in tunames:      
+            matches = pythontwitter2.tweets.get_easy(i, hashtag)
+            for x in matches:
+                clct.update({ 'username' : uname }, {'$addToSet': { 'tweets': x} })
 
 def getTweets(uname):
+    tweets=[]
     x = 0
     for post in clct.find({'username': uname}):
         for tweet in post['tweets']:
-            print "Your stored tweet: " + tweet
+            tweets.append(tweet)
             x += 1
-    return x
+    twts= "You have " + str(x) + " tweets: "
+    for i in tweets:
+        twts = twts + "\n" + i
+    return twts
             
     
 
 reset()
-addUser('Daniel','dobby','Daniel Teehan', 'leopoldsg94')
-addUser('Ryan','winky','Ryan Teehan', 'RyanTeehan')
+#addUser('Daniel','dobby','Daniel Teehan', 'leopoldsg94')
+addUser('Ryan','winky','Ryan Teehan', ['RyanTeehan','leopoldsg94'])
 print validate('Ryan', 'winky')
 
-addTweets('Daniel', 'MichaelJordan')
+
 addTweets('Ryan','#csproject')
 
-print getTweets('Daniel')
+#print getTweets('Daniel')
 print getTweets('Ryan')
 
 #if __name__=="__main__":
