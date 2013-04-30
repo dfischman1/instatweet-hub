@@ -1,5 +1,6 @@
 from pymongo import Connection
 import pythontwitter2.tweets
+import threading
 
 connection = Connection('mongo2.stuycs.org')
 db=connection.admin
@@ -56,7 +57,20 @@ def addTweets(uname, hashtag):
             matches = pythontwitter2.tweets.get_easy(i, hashtag)
             for x in matches:
                 clct.update({ 'username' : uname }, {'$addToSet': { 'tweets': x} })
+                
+def updateTweets():
+    for post in clct.find():
+        uname = post['username']
+        hashtag = post['hashtag']
+        addTweets(uname,hashtag)
 
+
+def continuousUpdate():
+    updateTweets()
+    s=threading.Timer(10000.0,continuousUpdate)
+    s.start()
+    
+    
 def getTweets(uname):
     tweets=[]
     x = 0
