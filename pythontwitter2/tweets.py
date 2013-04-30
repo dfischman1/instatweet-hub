@@ -19,7 +19,7 @@ def get_tweets(username):
     text = [s.text for s in statuses]
     while i < 10:
         tweets.append(text[i])
-        print tweets[i] + "\n"
+        #print tweets[i] + "\n"
         i += 1
     return tweets
 
@@ -31,7 +31,7 @@ def get_hashtag(tweets, hashtag):
         #print "" + str(y) + " " + word + "/n"
         for i in word.split():
             if i == hashtag:
-                print "" + str(y) + " " + word + "/n"
+                #print "" + str(y) + " " + word + "/n"
                 y += 1
                 matches.append(word)
     return matches
@@ -53,7 +53,7 @@ def check(username):
         print "twitter username doesn't exist"
         return 0
 
-get_easy('mets', '#Mets')
+#get_easy('mets', '#Mets')
 
 
 
