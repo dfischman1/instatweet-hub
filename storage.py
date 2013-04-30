@@ -9,9 +9,9 @@ db.roundtable.save({})
 db.roundtable.insert({'username':'Teehan', 'password':'devyldogs','full':'Daniel Teehan'})
 clct=db.roundtable
 
-def addUser(uname, password, fullname, tunames):
+def addUser(uname, password, fullname, tunames, hashtag):
     if len(list(clct.find({'username':uname})))==0:
-        clct.insert({'username':uname, 'password':password, 'full': fullname, 'tunames':tunames, 'tweets': [], 'imgs': []})
+        clct.insert({'username':uname, 'password':password, 'full': fullname, 'tunames':tunames, 'tweets': [], 'imgs': [], 'hashtag':hashtag})
         return 1
     else:
         print "username is already taken, try another"
