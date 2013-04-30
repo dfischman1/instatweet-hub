@@ -73,8 +73,8 @@ def register():
             password = request.form['pswd']
             fullname = request.form['name']
             tuname = request.form['twitter']
-        #user_hashtag = request.form['hashtag']
-        #print user_hashtag
+        user_hashtag = request.form['hashtag']
+        print user_hashtag
             if pythontwitter2.tweets.check(tuname) == 1:
                 if storage.validate(uname, password) == 3:
                     result = storage.addUser(uname, password, fullname, tuname)
