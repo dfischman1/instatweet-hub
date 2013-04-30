@@ -11,12 +11,25 @@ clct=db.roundtable
 
 def addUser(uname, password, fullname, tunames, hashtag):
     if len(list(clct.find({'username':uname})))==0:
-        clct.insert({'username':uname, 'password':password, 'full': fullname, 'tunames':tunames, 'tweets': [], 'imgs': [], 'hashtag':hashtag})
+        clct.insert({'username':uname, 'password':password, 'full': fullname, 'tunames':tunames, 
+                    'tweets': [], 'imgs': [], 'hashtag':hashtag, 'instatoken':"", "instaid": ""})
         return 1
     else:
         print "username is already taken, try another"
         return 0
-
+        
+def getHash(uname):
+    if len(list(clct.find({'username':uname})))==1:
+        return clct.find({'username':uname})[0]['hashtag']
+    else:
+        return "invalid username"
+        
+def addInstagram(uname, token, instaid):
+    if len(list(clct.find({'username':uname})))==1:
+        clct.update({'username':uname},{'instatoken':token, "instaid":instaid})
+    else:
+        return "invalid username"
+        
 def validate(uname, password):
     if len(list(clct.find({'username':uname})))==1:
         if len(list(clct.find({'username':uname,'password': password})))==1:
