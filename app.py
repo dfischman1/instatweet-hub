@@ -25,7 +25,7 @@ user_id = 0
 user_token= 0
 instagram_client = client.InstagramAPI(**CONFIG)
 user_hashtag = 'fun'
-
+success = ""
 def process_tag_update(update):
     print update
 
@@ -38,7 +38,7 @@ def default():
 @app.route('/login', methods= ['GET', 'POST'])
 def login():
     if request.method == 'GET':
-        return render_template('homepage.html')
+        return render_template('homepage.html', success = success)
     else:
         user = request.form['username']
         password = request.form['password']
@@ -48,7 +48,7 @@ def login():
 	if res == 1:
 	    return redirect(url_for("search"))
         else:
-            return render_template('homepage.html', res = res)
+            return render_template('homepage.html', res = "retry or register")
 
 
 @app.route('/index', methods= ['GET'])
@@ -73,21 +73,29 @@ def register():
             password = request.form['pswd']
             fullname = request.form['name']
             tuname = request.form['twitter']
-        user_hashtag = request.form['hashtag']
-        print user_hashtag
+            user_hashtag = request.form['hashtag']
             if pythontwitter2.tweets.check(tuname) == 1:
+                print "good twitter"
                 if storage.validate(uname, password) == 3:
                     result = storage.addUser(uname, password, fullname, tuname)
+                    success = "You succesfully created a new account!"
+                    return redirect(url_for('login'))
+                    #render_template('register.html', terror
                 else:
                     uerror = "That username isn't valid. Try again"
                     result = 0
+                    return render_template('register.html', terror = terorr,
+                                           uerror = uerror)
             else:
                 terror = "Your twitter username isn't valid. Try again."
                 result = 0
-            if result == 1:
-                success = "You succesfully created a new account!"
-                return redirect(url_for("login"))
-            if result == 0:
+                return render_template('register.html',
+                                       terror = terror,
+                                       uerror = uerror)
+            #if result == 1:
+            #    success = "You succesfully created a new account!"
+            #   return redirect(url_for("login"))
+            #if result == 0:
                 return render_template('register.html',
                                        terror = terror,
                                        uerror = uerror)
