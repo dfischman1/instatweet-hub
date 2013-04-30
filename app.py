@@ -25,6 +25,7 @@ user_id = 0
 user_token= 0
 instagram_client = client.InstagramAPI(**CONFIG)
 user_hashtag = 'fun'
+global success
 success = ""
 def process_tag_update(update):
     print update
@@ -72,12 +73,25 @@ def register():
             uname = request.form['username']
             password = request.form['pswd']
             fullname = request.form['name']
-            tuname = request.form['twitter']
+            tunames = []
+            for x in range(0,5):
+                try:
+                    tunames.append(request.form[str(x)])
+                except:
+                    break               
             user_hashtag = request.form['hashtag']
-            if pythontwitter2.tweets.check(tuname) == 1:
-                print "good twitter"
+            for x in range(0, len(tunames)):
+                if pythontwitter2.tweets.check(tunames[x]) != 1:
+                    break
+            
+                global terror
+                terror = "Your twitter username isn't valid. Try again."
+                result = 0
+                return render_template('register.html', terror = terror, uerror = uerror)
+            else:
                 if storage.validate(uname, password) == 3:
-                    result = storage.addUser(uname, password, fullname, tuname)
+                    result = storage.addUser(uname, password, fullname, tunames)
+                    global success
                     success = "You succesfully created a new account!"
                     return redirect(url_for('login'))
                     #render_template('register.html', terror
@@ -86,12 +100,6 @@ def register():
                     result = 0
                     return render_template('register.html', terror = terorr,
                                            uerror = uerror)
-            else:
-                terror = "Your twitter username isn't valid. Try again."
-                result = 0
-                return render_template('register.html',
-                                       terror = terror,
-                                       uerror = uerror)
             #if result == 1:
             #    success = "You succesfully created a new account!"
             #   return redirect(url_for("login"))
