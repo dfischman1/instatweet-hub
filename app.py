@@ -24,7 +24,7 @@ CONFIG = {
 user_id = 0
 user_token= 0
 instagram_client = client.InstagramAPI(**CONFIG)
-user_hashtag = '#nationalsiblingday'
+user_hashtag = 'fun'
 
 def process_tag_update(update):
     print update
@@ -64,7 +64,7 @@ def index():
 def register():
     if request.method == 'GET':
         return render_template('register.html')
-    elif request.form['Go'] == 'twitter':
+    elif request.form['Go'] == 'Twitter':
         terror = ""
         uerror = ""
         uname = request.form['username']
@@ -75,8 +75,8 @@ def register():
         print fullname
         tuname = request.form['twitter']
         print tuname
-        #user_hashtag = request.form['hashtag']
-        #print user_hashtag
+        user_hashtag = request.form['hashtag']
+        print user_hashtag
         if pythontwitter2.tweets.check(tuname) == 1:
             if storage.validate(uname, password) == 3:
                 result = storage.addUser(uname, password, fullname, tuname)
@@ -108,13 +108,15 @@ def search():
 
 @app.route('/instagram')
 def instagram():
-    code = request.values.get('code')
-    if not code:
+    try:
+        code = request.values.get('code')
+    except:
         res = "Missing Code"
         return render_template('homepage.html', res = res)
-    #try:
-    access_token, instagram_user = instagram_client.exchange_code_for_access_token(code)
-    if not access_token:
+    try:
+        code = request.values.get('code')
+        access_token, instagram_user = instagram_client.exchange_code_for_access_token(code)
+    except:
         res = "no token"
         return render_template('homepage.html', res = res)
     user_id = instagram_user['id']

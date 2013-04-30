@@ -9,14 +9,17 @@ def get_pics(user_id, access_token, user_hashtag):
     instagram_client = client.InstagramAPI(access_token=access_token)
     recent_media, next = instagram_client.user_recent_media(user_id=user_id, count = 5)
     photos = []
+    tags = []
     for media in recent_media:
-        #if hasattr(media, 'tags'):
-         #   tagged = media.tags.count(user_hashtag)
-          #  if tagged > 0:
+        tags = []
+        if hasattr(media, 'tags'):
+            for tag in media.tags:
+                tags.append(tag.name.lower())
+            if user_hashtag in tags:
                 photos.append(media.images['standard_resolution'].url)
     return photos
 
-
+    
 
         #images = []
         #tags = []
