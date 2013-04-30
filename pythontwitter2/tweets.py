@@ -17,7 +17,7 @@ def get_tweets(username):
     
     statuses = api.GetUserTimeline(username)
     text = [s.text for s in statuses]
-    while i < 10:
+    while i < len(statuses):
         tweets.append(text[i])
         #print tweets[i] + "\n"
         i += 1

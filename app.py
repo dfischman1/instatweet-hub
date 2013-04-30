@@ -64,38 +64,35 @@ def index():
 def register():
     if request.method == 'GET':
         return render_template('register.html')
-    elif request.form['Go'] == 'Twitter':
-        terror = ""
-        uerror = ""
-        uname = request.form['username']
-        print uname
-        password = request.form['pswd']
-        print password
-        fullname = request.form['name']
-        print fullname
-        tuname = request.form['twitter']
-        print tuname
-        user_hashtag = request.form['hashtag']
-        print user_hashtag
-        if pythontwitter2.tweets.check(tuname) == 1:
-            if storage.validate(uname, password) == 3:
-                result = storage.addUser(uname, password, fullname, tuname)
-            else:
-                uerror = "That username isn't valid. Try again"
-                result = 0
-
-        else:
-            terror = "Your twitter username isn't valid. Try again."
-            result = 0
-        if result == 1:
-            success = "You succesfully created a new account!"
-            return redirect(url_for("login"))
-        if result == 0:
-            return render_template('register.html',
-                                   terror = terror,
-                                   uerror = uerror)
     else:
-        return redirect(instagram_client.get_authorize_url(scope=['basic']))
+        btn = request.form['Go']
+	if btn == "Twitter":
+            terror = ""
+            uerror = ""
+            uname = request.form['username']
+            password = request.form['pswd']
+            fullname = request.form['name']
+            tuname = request.form['twitter']
+        #user_hashtag = request.form['hashtag']
+        #print user_hashtag
+            if pythontwitter2.tweets.check(tuname) == 1:
+                if storage.validate(uname, password) == 3:
+                    result = storage.addUser(uname, password, fullname, tuname)
+                else:
+                    uerror = "That username isn't valid. Try again"
+                    result = 0
+            else:
+                terror = "Your twitter username isn't valid. Try again."
+                result = 0
+            if result == 1:
+                success = "You succesfully created a new account!"
+                return redirect(url_for("login"))
+            if result == 0:
+                return render_template('register.html',
+                                       terror = terror,
+                                       uerror = uerror)
+        else:
+            return redirect(instagram_client.get_authorize_url(scope=['basic']))
         
 
 

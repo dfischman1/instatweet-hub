@@ -40,13 +40,14 @@ def addTweets(uname, hashtag):
         tuname = post['tuname']
     matches = pythontwitter2.tweets.get_easy(tuname, hashtag)
     for x in matches:
+        print x
         clct.update({ 'username' : uname }, {'$addToSet': { 'tweets': x} })
 
 def getTweets(uname):
     x = 0
     for post in clct.find({'username': uname}):
         for tweet in post['tweets']:
-            print "Your stored tweets" + tweet
+            print "Your stored tweet: " + tweet
             x += 1
     return x
             
@@ -54,11 +55,14 @@ def getTweets(uname):
 
 reset()
 addUser('Daniel','dobby','Daniel Teehan', 'leopoldsg94')
-print validate('Daniel', 'dobby')
+addUser('Ryan','winky','Ryan Teehan', 'RyanTeehan')
+print validate('Ryan', 'winky')
 
-addTweets('Daniel', 'Mets')
+addTweets('Daniel', 'MichaelJordan')
+addTweets('Ryan','#csproject')
 
 print getTweets('Daniel')
+print getTweets('Ryan')
 
 #if __name__=="__main__":
 #    addUser("daniel teehan", 'daelin', 'daelin fisch', "@dfisch")
