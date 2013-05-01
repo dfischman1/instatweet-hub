@@ -42,6 +42,12 @@ def validate(uname, password):
         return 3
         return "no such account exists, create a new account"
 
+def getInstaInfo(uname):
+    ans = []
+    ans.append(clct.find({'username':uname}))[0]['instaid']
+    ans.append(clct.find({'username':uname}))[0]['instatoken']
+    return ans
+
 def changePass(uname, oldpass, newpass):
     if len(list(clct.find({'username':uname,'password': oldpass})))==1:
         clct.update({'username':uname,'password':oldpass},{'username':uname,'password':newpass})
@@ -69,6 +75,8 @@ def continuousUpdate():
     updateTweets()
     s=threading.Timer(10000.0,continuousUpdate)
     s.start()
+
+
     
     
 def getTweets(uname):
