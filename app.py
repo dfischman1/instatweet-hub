@@ -91,7 +91,7 @@ def register():
                 if pythontwitter2.tweets.check(tunames[x]) != 1:
                     
             
-                    global terror
+                   
                     terror = "Your twitter username isn't valid. Try again."
                     result = 0
                     return render_template('register.html', terror = terror, uerror = uerror)
@@ -104,8 +104,7 @@ def register():
             else:
                 uerror = "That username isn't valid. Try again"
                 result = 0
-                return render_template('register.html', terror = terorr,
-                                       uerror = uerror)
+                return render_template('register.html', terror = "", uerror = uerror)
             #if result == 1:
             #    success = "You succesfully created a new account!"
             #   return redirect(url_for("login"))
