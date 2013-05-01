@@ -123,11 +123,6 @@ def instaregister():
 
 
 
-@app.route('/search')
-def search():
-    if request.method == 'GET':
-        pics = instagramhub.user_pics(uname)
-        return render_template("instagramhub.html", images = pics, user_hashtag = user_hashtag)
 
 @app.route('/instagram')
 def instagram():
