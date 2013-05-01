@@ -25,6 +25,19 @@ def getHash(uname):
     else:
         return "invalid username"
         
+def getInfo(uname):
+    info=[]
+    if len(list(clct.find({'username':uname})))==1:
+        info.append({clct.find({'username':uname})[0]['username']
+        info.append({clct.find({'username':uname})[0]['password']
+        info.append({clct.find({'username':uname})[0]['full']
+        info.append({clct.find({'username':uname})[0]['tunames']
+        info.append({clct.find({'username':uname})[0]['hashtag']
+    else:
+        return "invalid username"
+    return info
+        
+        
 def addInstagram(uname, token, instaid):
     if len(list(clct.find({'username':uname})))==1:
         clct.update({'username':uname},{'instatoken':token, 'instaid':instaid})
