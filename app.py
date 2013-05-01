@@ -43,13 +43,13 @@ def login():
     if request.method == 'GET':
         return render_template('homepage.html', success = success)
     else:
-        user = request.form['username']
+        uname = request.form['username']
         password = request.form['password']
         res = 0
-	if user and password:
-	    res = storage.validate(user, password)
-	if res == 1:
-	    return redirect(url_for("search"))
+        if uname and password:
+            res = storage.validate(uname, password)
+        if res == 1:
+            return redirect(url_for("search"))
         else:
             return render_template('homepage.html', res = "retry or register")
 
@@ -58,9 +58,9 @@ def login():
 def index():
     return render_template ('index.html')
 
-        
 
-     
+
+
 
 
 @app.route('/register', methods= ['GET', 'POST'])
@@ -69,46 +69,45 @@ def register():
         return render_template('register.html')
     else:
         btn = request.form['Go']
-	if btn == "Twitter":
-            terror = ""
-            uerror = ""
+        if btn == "Submit":
+            global success
+            global user_hashtag
+            error = ""
+            uname = ""
+            password = ""
+            fullname = ""
+            
+            user_hashtag = ""
             uname = request.form['username']
             password = request.form['pswd']
             fullname = request.form['name']
-            global user_hashtag
             user_hashtag = request.form['hashtag']
-            print user_hashtag
             tunames = []
-            tunames.append(request.form['tuname'])
-            print tunames[0]
-            #for x in range(0,5):
-             #   try:
-             #       tunames.append(request.form[str(x)])
-             #   except:
-               #     break               
-            result = 100
+            tname = request.form['tuname']
+            tunames.append(tname)
+        
             for x in range(0, len(tunames)):
                 if pythontwitter2.tweets.check(tunames[x]) != 1:
-                    
-            
-                   
-                    terror = "Your twitter username isn't valid. Try again."
+                    error = "Some of your info isn't valid. Try again."
                     result = 0
-                    return render_template('register.html', terror = terror, uerror = uerror)
+                    return render_template('register.html', error = error)
             if storage.validate(uname, password) == 3:
-                result = storage.addUser(uname, password, fullname, tunames, user_hashtag)
-                global success
-                success = "You succesfully created a new account!"
-                return redirect(url_for('instaregister'))
-                    #render_template('register.html', terror
-            else:
-                uerror = "That username isn't valid. Try again"
-                result = 0
-                return render_template('register.html', terror = "", uerror = uerror)
-            #if result == 1:
-            #    success = "You succesfully created a new account!"
-            #   return redirect(url_for("login"))
-            #if result == 0:
+                if password != "" and fullname != "" and user_hashtag != "" and uname != "" and len(tunames) != 0:
+                    result = storage.addUser(uname, password, fullname, tunames, user_hashtag)
+                    success = ""
+                    print "Your user info:"
+                    print storage.getInfo(uname)
+                    success = "You succesfully created a new account!"
+                    return redirect(url_for('instaregister'))
+                #render_template('register.html', terror
+                else:
+                    uerror = "Some of your info is invalid. Please try again."
+                    return render_template('register.html', error = error)
+                #if result == 1:
+                #    success = "You succesfully created a new account!"
+                #   return redirect(url_for("login"))
+                #if result == 0:
+
 
 @app.route('/instaregister', methods = ['GET', 'POST'])
 def instaregister():
@@ -117,9 +116,9 @@ def instaregister():
     else:
         btn = request.form['Go']
     if btn == "Instagram":
-           return redirect(instagram_client.get_authorize_url(scope=['basic']))
+        return redirect(instagram_client.get_authorize_url(scope=['basic']))
     else:
-           return redirect(url_for('login'))
+        return redirect(url_for('login'))
 
 
 
@@ -127,7 +126,8 @@ def instaregister():
 @app.route('/search')
 def search():
     if request.method == 'GET':
-        return render_template('search.html')
+        pics = instagramhub.user_pics(uname)
+        return render_template("instagramhub.html", images = pics, user_hashtag = user_hashtag)
 
 @app.route('/instagram')
 def instagram():
@@ -149,11 +149,11 @@ def instagram():
     taggedimages = instagramhub.get_pics(user_id, user_token, user_hashtag)
     print taggedimages
     return render_template('instagram.html', images = taggedimages, user_hashtag = user_hashtag)
-        #deferred.defer(fetch_instagram_for_user, g.user.get_id(), count=20, _queue='instagram')
-    #except (RuntimeError, TypeError, NameError):
-    #    print "poops"
-    #    return render_template('search.html')
-    #return render_template('search.html')
+#deferred.defer(fetch_instagram_for_user, g.user.get_id(), count=20, _queue='instagram')
+#except (RuntimeError, TypeError, NameError):
+#    print "poops"
+#    return render_template('search.html')
+#return render_template('search.html')
 
 
 

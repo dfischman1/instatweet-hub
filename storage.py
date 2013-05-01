@@ -21,15 +21,36 @@ def addUser(uname, password, fullname, tunames, hashtag):
         
 def getHash(uname):
     if len(list(clct.find({'username':uname})))==1:
+        print clct.find({'username':uname})[0]['hashtag'][1:]
+        return clct.find({'username':uname})[0]['hashtag'][1:]
+    else:
+        return "invalid username"
+
+def getTwitterHash(uname):
+    if len(list(clct.find({'username':uname})))==1:
+        print clct.find({'username':uname})[0]['hashtag']
         return clct.find({'username':uname})[0]['hashtag']
     else:
         return "invalid username"
         
+def getInfo(uname):
+    info=[]
+    if len(list(clct.find({'username':uname})))==1:
+        print clct.find({'username':uname})[0]['username']
+        print clct.find({'username':uname})[0]['password']
+        print clct.find({'username':uname})[0]['full']
+        print clct.find({'username':uname})[0]['tunames']
+        print clct.find({'username':uname})[0]['hashtag']
+    else:
+        return "invalid username"
+    return info
+        
+        
 def addInstagram(uname, token, instaid):
     if len(list(clct.find({'username':uname})))==1:
-        clct.update({'username':uname},{'instatoken':token, "instaid":instaid})
+        clct.update({'username':uname},{'instatoken':token, 'instaid':instaid})
         return "Successful Update"
-    else:
+    else:   
         return "invalid username"
         
 def validate(uname, password):
@@ -56,9 +77,11 @@ def reset():
     print clct.drop()
 
 
-def addTweets(uname, hashtag):
+def addTweets(uname):
     for post in clct.find({'username': uname}):
         tunames = post['tunames']
+        hashtag = getTwitterHash(uname)
+        print hashtag
         for i in tunames:      
             matches = pythontwitter2.tweets.get_easy(i, hashtag)
             for x in matches:
@@ -67,8 +90,7 @@ def addTweets(uname, hashtag):
 def updateTweets():
     for post in clct.find():
         uname = post['username']
-        hashtag = post['hashtag']
-        addTweets(uname,hashtag)
+        addTweets(uname)
 
 
 def continuousUpdate():
@@ -95,15 +117,15 @@ def getTweets(uname):
 
 #reset()
 #addUser('Daniel','dobby','Daniel Teehan', 'leopoldsg94')
-addUser('Ryan','winky','Ryan Teehan', ['RyanTeehan','leopoldsg94'], '#csproject')
-print validate('Ryan', 'winky')
+addUser('Daelin','winky','Ryan Teehan', ['RyanTeehan','leopoldsg94'], '#csproject')
+print validate('Daelin', 'winky')
 
 
-addTweets('Ryan','#csproject')
+addTweets('Daelin')
 
 #print getTweets('Daniel')
-print getTweets('Ryan')
-
+print getTweets('Daelin')
+getTwitterHash('Daelin')
 #if __name__=="__main__":
 #    addUser("daniel teehan", 'daelin', 'daelin fisch', "@dfisch")
 #    addUser("Leopold","specswag", "leo spon", "@leo")
