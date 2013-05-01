@@ -7,7 +7,7 @@ import app
 def user_pics(uname):
     result = ""
     result = storage.getHash(uname)
-    clientstuff = getInstaInfo(uname)
+    clientstuff = storage.getInstaInfo(uname)
     client_id = clientstuff[0]
     client_token = clientstuff[1]
     pics = get_pics(client_id, client_token, result)
