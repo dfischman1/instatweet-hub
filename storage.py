@@ -27,9 +27,9 @@ def getHash(uname):
         
 def addInstagram(uname, token, instaid):
     if len(list(clct.find({'username':uname})))==1:
-        clct.update({'username':uname},{'instatoken':token, "instaid":instaid})
+        clct.update({'username':uname},{'instatoken':token, 'instaid':instaid})
         return "Successful Update"
-    else:
+    else:   
         return "invalid username"
         
 def validate(uname, password):
