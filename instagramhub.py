@@ -4,6 +4,17 @@ import storage
 import app
 
 
+def user_pics(uname):
+    result = ""
+    result = storage.getHash(uname)
+    clientstuff = getInstaInfo(uname)
+    client_id = clientstuff[0]
+    client_token = clientstuff[1]
+    pics = get_pics(client_id, client_token, result)
+    return pics
+    
+    
+
 
 def get_pics(user_id, access_token, user_hashtag):
     instagram_client = client.InstagramAPI(access_token=access_token)

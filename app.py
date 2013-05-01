@@ -90,10 +90,10 @@ def register():
                 return render_template('register.html', terror = terror, uerror = uerror)
             else:
                 if storage.validate(uname, password) == 3:
-                    result = storage.addUser(uname, password, fullname, tunames)
+                    result = storage.addUser(uname, password, fullname, tunames, "")
                     global success
                     success = "You succesfully created a new account!"
-                    return redirect(url_for('login'))
+                    return redirect(url_for('instaregister'))
                     #render_template('register.html', terror
                 else:
                     uerror = "That username isn't valid. Try again"
@@ -107,9 +107,18 @@ def register():
                 return render_template('register.html',
                                        terror = terror,
                                        uerror = uerror)
-        else:
-            return redirect(instagram_client.get_authorize_url(scope=['basic']))
         
+
+@app.route('/instaregister', methods = ['GET', 'POST'])
+def instaregister():
+    if request.method == 'GET':
+        return render_template('instaregister.html')
+    else:
+        btn = request.form['Go']
+    if btn == "Instagram":
+           return redirect(instagram_client.get_authorize_url(scope=['basic']))
+    else:
+           return redirect(url_for('login'))
 
 
 
