@@ -116,7 +116,7 @@ def getTweets(uname):
             
     
 
-#reset()
+reset()
 #addUser('Daniel','dobby','Daniel Teehan', 'leopoldsg94')
 addUser('Daelin','winky','Ryan Teehan', ['RyanTeehan','leopoldsg94'], '#csproject')
 print validate('Daelin', 'winky')
