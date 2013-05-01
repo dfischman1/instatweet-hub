@@ -103,7 +103,7 @@ def register():
                 #render_template('register.html', terror
                 else:
                     uerror = "Some of your info is invalid. Please try again."
-                    return render_template('register.html', error = error)
+                    return render_template('register.html', uerror = uerror)
                 #if result == 1:
                 #    success = "You succesfully created a new account!"
                 #   return redirect(url_for("login"))
@@ -127,15 +127,16 @@ def instaregister():
 @app.route('/search')
 def search():
     if request.method == 'GET':
-        if storage.getInstaInfo(uname):
+        try:
+            storage.getInstaInfo(uname)
             pics = instagramhub.user_pics(uname)
             tweets = storage.getTweets(uname)
             print "Here are your tweets" + tweets
-            return render_template("instagramhub.html", tweets = tweets, images = pics, user_hashtag = user_hashtag)
-        else:
+            return render_template("instagram.html", tweets = tweets, images = pics, user_hashtag = user_hashtag)
+        except:
             tweets = storage.getTweets(uname)
             print "Here are your tweets" + tweets
-            return render_template("instagramhub.html", tweets = tweets,user_hashtag = user_hashtag)
+            return render_template("instagram.html", tweets = tweets,user_hashtag = user_hashtag)
 @app.route('/instagram')
 def instagram():
     try:
