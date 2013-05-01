@@ -41,7 +41,7 @@ How many twitter users do you want to follow?
 <div id="twitternames">
 </div>
 <input type = "submit" value = "Twitter" name = "Go">Submit </input>
-<p> '{{ message }}' </p>
+<p> {{ message }} </p>
 
 
 
@@ -58,11 +58,15 @@ $("#twitternames").append("" + (i+1) + ". <input type='text' id=" + i+ " name='t
 
 
 $(document).ready( function() {
+createEnt();
 $("#numtwits").click(createEnt);
 });
 </script>
 </html>
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> 91cc8188fb51511d4491f6ff07cd7780c183fdb2
