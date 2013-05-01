@@ -17,7 +17,8 @@ h4 { text-align:center;}
 
 
 <form action= ""  method= "POST">
-{{error}}<br>
+{{terror}}<br>
+{{uerror}}<br>
 Full Name: <input type = "text" name="name" id="name"></input><br>
 Roundtable Username: <input type = "text" name="username" id = "username">
 </input><br>
@@ -40,7 +41,11 @@ How many twitter users do you want to follow?
 Username:  <input type = "text" name="tuname" id = "tuname"></input><br>
 <div id="twitternames">
 </div>
-<input type = "submit" value = "Submit" name = "Go">Submit </input>
+<input type = "submit" value = "Submit" name = "Go" class = 'buttons'>Submit </input>
+<p> {{ message }} </p>
+
+<div id="twitternames">
+</div>
 <p> {{ message }} </p>
 
 
@@ -52,7 +57,7 @@ Username:  <input type = "text" name="tuname" id = "tuname"></input><br>
 function createEnt(){
 $("#twitternames").empty();
 for (var i = 0; i < parseInt($("#numtwits").val()); i++) {
-$("#twitternames").append("" + (i+1) + ". <input type='text' id=" + i+ "name='twitter'></input> <br>");
+$("#twitternames").append("" + (i+1) + ". <input type='text' id=" + i+ " name='twitter'></input> <br>");
 }
 }
 
@@ -63,4 +68,10 @@ $("#numtwits").click(createEnt);
 });
 </script>
 </html>
+<<<<<<< HEAD
 
+
+
+
+=======
+>>>>>>> 91cc8188fb51511d4491f6ff07cd7780c183fdb2
