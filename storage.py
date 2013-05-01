@@ -24,6 +24,7 @@ def getHash(uname):
         print clct.find({'username':uname})[0]['hashtag'][1:]
         return clct.find({'username':uname})[0]['hashtag'][1:]
     else:
+        print clct.find({'username':uname})[0]['hashtag'][1:]
         return "invalid username"
 
 def getTwitterHash(uname):
