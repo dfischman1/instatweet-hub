@@ -21,18 +21,18 @@ def addUser(uname, password, fullname, tunames, hashtag):
         
 def getHash(uname):
     if len(list(clct.find({'username':uname})))==1:
-        return clct.find({'username':uname})[0]['hashtag']
+        return clct.find({'username':uname})[0]['hashtag'][1:]
     else:
         return "invalid username"
         
 def getInfo(uname):
     info=[]
     if len(list(clct.find({'username':uname})))==1:
-        info.append({clct.find({'username':uname})[0]['username']
-        info.append({clct.find({'username':uname})[0]['password']
-        info.append({clct.find({'username':uname})[0]['full']
-        info.append({clct.find({'username':uname})[0]['tunames']
-        info.append({clct.find({'username':uname})[0]['hashtag']
+        info.append({clct.find({'username':uname})[0]['username'])
+        info.append({clct.find({'username':uname})[0]['password'])
+        info.append({clct.find({'username':uname})[0]['full'])
+        info.append({clct.find({'username':uname})[0]['tunames'])
+        info.append({clct.find({'username':uname})[0]['hashtag'])
     else:
         return "invalid username"
     return info
