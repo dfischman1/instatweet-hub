@@ -25,6 +25,7 @@ user_id = 0
 user_token= 0
 instagram_client = client.InstagramAPI(**CONFIG)
 user_hashtag = 'fun'
+uname = ""
 global success
 success = ""
 def process_tag_update(update):
@@ -90,7 +91,7 @@ def register():
                 return render_template('register.html', terror = terror, uerror = uerror)
             else:
                 if storage.validate(uname, password) == 3:
-                    result = storage.addUser(uname, password, fullname, tunames, "")
+                    result = storage.addUser(uname, password, fullname, tunames, user_hashtag)
                     global success
                     success = "You succesfully created a new account!"
                     return redirect(url_for('instaregister'))
@@ -143,7 +144,8 @@ def instagram():
         return render_template('homepage.html', res = res)
     user_id = instagram_user['id']
     user_token = access_token
-    print user_id + user_hashtag + 'YAY!'
+    result = storage.addInstagram(uname, user_token, user_id)
+    print user_id + user_hashtag + result
     taggedimages = instagramhub.get_pics(user_id, user_token, user_hashtag)
     print taggedimages
     return render_template('instagram.html', images = taggedimages, user_hashtag = user_hashtag)
@@ -152,6 +154,9 @@ def instagram():
     #    print "poops"
     #    return render_template('search.html')
     #return render_template('search.html')
+
+
+
 
 import os
 key = os.urandom(24)
