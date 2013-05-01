@@ -24,7 +24,8 @@ CONFIG = {
 user_id = 0
 user_token= 0
 instagram_client = client.InstagramAPI(**CONFIG)
-user_hashtag = 'fun'
+global user_hashtag
+user_hashtag = ''
 uname = ""
 global success
 success = ""
@@ -74,41 +75,41 @@ def register():
             uname = request.form['username']
             password = request.form['pswd']
             fullname = request.form['name']
-            tunames = []
-            for x in range(0,5):
-                try:
-                    tunames.append(request.form[str(x)])
-                except:
-                    break               
+            global user_hashtag
             user_hashtag = request.form['hashtag']
+            print user_hashtag
+            tunames = []
+            tunames.append(request.form['tuname'])
+            print tunames[0]
+            #for x in range(0,5):
+             #   try:
+             #       tunames.append(request.form[str(x)])
+             #   except:
+               #     break               
+            result = 100
             for x in range(0, len(tunames)):
                 if pythontwitter2.tweets.check(tunames[x]) != 1:
-                    break
+                    
             
-                global terror
-                terror = "Your twitter username isn't valid. Try again."
-                result = 0
-                return render_template('register.html', terror = terror, uerror = uerror)
-            else:
-                if storage.validate(uname, password) == 3:
-                    result = storage.addUser(uname, password, fullname, tunames, user_hashtag)
-                    global success
-                    success = "You succesfully created a new account!"
-                    return redirect(url_for('instaregister'))
-                    #render_template('register.html', terror
-                else:
-                    uerror = "That username isn't valid. Try again"
+                    global terror
+                    terror = "Your twitter username isn't valid. Try again."
                     result = 0
-                    return render_template('register.html', terror = terorr,
-                                           uerror = uerror)
+                    return render_template('register.html', terror = terror, uerror = uerror)
+            if storage.validate(uname, password) == 3:
+                result = storage.addUser(uname, password, fullname, tunames, user_hashtag)
+                global success
+                success = "You succesfully created a new account!"
+                return redirect(url_for('instaregister'))
+                    #render_template('register.html', terror
+            else:
+                uerror = "That username isn't valid. Try again"
+                result = 0
+                return render_template('register.html', terror = terorr,
+                                       uerror = uerror)
             #if result == 1:
             #    success = "You succesfully created a new account!"
             #   return redirect(url_for("login"))
             #if result == 0:
-                return render_template('register.html',
-                                       terror = terror,
-                                       uerror = uerror)
-        
 
 @app.route('/instaregister', methods = ['GET', 'POST'])
 def instaregister():
