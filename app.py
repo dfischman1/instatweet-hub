@@ -72,6 +72,7 @@ def register():
         if btn == "Submit":
             global success
             global user_hashtag
+            global uname
             error = ""
             uname = ""
             password = ""
@@ -127,7 +128,9 @@ def instaregister():
 def search():
     if request.method == 'GET':
         pics = instagramhub.user_pics(uname)
-        return render_template("instagramhub.html", images = pics, user_hashtag = user_hashtag)
+        tweets = storage.getTweets(uname)
+        print "Here are your tweets" + tweets
+        return render_template("instagramhub.html", tweets = tweets, images = pics, user_hashtag = user_hashtag)
 
 @app.route('/instagram')
 def instagram():
@@ -147,8 +150,11 @@ def instagram():
     result = storage.addInstagram(uname, user_token, user_id)
     print user_id + user_hashtag + result
     taggedimages = instagramhub.get_pics(user_id, user_token, user_hashtag)
+    print "Your username" + uname
+    tweets = storage.getTweets(uname)
+    print "Here are your tweets" + tweets
     print taggedimages
-    return render_template('instagram.html', images = taggedimages, user_hashtag = user_hashtag)
+    return render_template('instagram.html', tweets = tweets, images = taggedimages, user_hashtag = user_hashtag)
 #deferred.defer(fetch_instagram_for_user, g.user.get_id(), count=20, _queue='instagram')
 #except (RuntimeError, TypeError, NameError):
 #    print "poops"

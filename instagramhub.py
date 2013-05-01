@@ -7,6 +7,7 @@ import app
 def user_pics(uname):
     result = ""
     result = storage.getHash(uname)
+    print "Your instagram hashtag:" + result
     clientstuff = getInstaInfo(uname)
     client_id = clientstuff[0]
     client_token = clientstuff[1]
