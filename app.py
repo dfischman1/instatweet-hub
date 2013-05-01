@@ -43,11 +43,11 @@ def login():
     if request.method == 'GET':
         return render_template('homepage.html', success = success)
     else:
-        user = request.form['username']
+        uname = request.form['username']
         password = request.form['password']
         res = 0
-        if user and password:
-            res = storage.validate(user, password)
+        if uname and password:
+            res = storage.validate(uname, password)
         if res == 1:
             return redirect(url_for("search"))
         else:
@@ -95,7 +95,8 @@ def register():
                 if password != "" and fullname != "" and user_hashtag != "" and uname != "" and len(tunames) != 0:
                     result = storage.addUser(uname, password, fullname, tunames, user_hashtag)
                     success = ""
-                    print "Your user info:" + storage.fullname + uname + password + user_hashtag + tunames[0]
+                    print "Your user info:"
+                    print storage.getInfo(uname)
                     success = "You succesfully created a new account!"
                     return redirect(url_for('instaregister'))
                 #render_template('register.html', terror
@@ -125,7 +126,8 @@ def instaregister():
 @app.route('/search')
 def search():
     if request.method == 'GET':
-        return render_template('search.html')
+        pics = instagramhub.user_pics(uname)
+        return render_template("instagramhub.html", images = pics, user_hashtag = user_hashtag)
 
 @app.route('/instagram')
 def instagram():
