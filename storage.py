@@ -32,7 +32,8 @@ def getTwitterHash(uname):
         print clct.find({'username':uname})[0]['hashtag']
         return clct.find({'username':uname})[0]['hashtag']
     else:
-        return "invalid username"
+        print "NOOO"
+        return "NOOO"
         
 def getInfo(uname):
     info=[]
@@ -121,7 +122,7 @@ reset()
 addUser('Daelin','winky','Ryan Teehan', ['RyanTeehan','leopoldsg94'], '#csproject')
 print validate('Daelin', 'winky')
 
-
+print getTweets('Daelin')
 addTweets('Daelin')
 
 #print getTweets('Daniel')
