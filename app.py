@@ -13,7 +13,7 @@ import instagramhub
 app = Flask(__name__)
 
 
-app.debug=True
+app.debug=False
 
 CONFIG = {
     'client_id': '2e1ab1ca522343a589a4dc84eb31af41',
