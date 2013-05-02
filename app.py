@@ -73,7 +73,7 @@ def register():
             global success
             global user_hashtag
             global uname
-            error = ""
+            uerror = ""
             uname = ""
             password = ""
             fullname = ""
@@ -89,9 +89,9 @@ def register():
         
             for x in range(0, len(tunames)):
                 if pythontwitter2.tweets.check(tunames[x]) != 1:
-                    error = "Some of your info isn't valid. Try again."
+                    uerror = "Some of your info isn't valid. Try again."
                     result = 0
-                    return render_template('register.html', error = error)
+                    return render_template('register.html', uerror = uerror)
             if storage.validate(uname, password) == 3:
                 if password != "" and fullname != "" and user_hashtag != "" and uname != "" and len(tunames) != 0:
                     result = storage.addUser(uname, password, fullname, tunames, user_hashtag)
@@ -101,9 +101,9 @@ def register():
                     success = "You succesfully created a new account!"
                     return redirect(url_for('instaregister'))
                 #render_template('register.html', terror
-                else:
-                    uerror = "Some of your info is invalid. Please try again."
-                    return render_template('register.html', uerror = uerror)
+            else:
+                uerror = "Some of your info is invalid. Please try again."
+                return render_template('register.html', uerror = uerror)
                 #if result == 1:
                 #    success = "You succesfully created a new account!"
                 #   return redirect(url_for("login"))
