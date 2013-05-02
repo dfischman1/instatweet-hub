@@ -10,7 +10,7 @@ def user_pics(uname):
     clientstuff = storage.getInstaInfo(uname)
     client_id = clientstuff[0]
     client_token = clientstuff[1]
-    pics = get_pics(client_id, client_token, result)
+    pics = get_pics(client_id, client_token, result[1:])
     return pics
 
 def oauth():
