@@ -154,18 +154,12 @@ def instagram():
     user_token = access_token
     result = storage.addInstagram(uname, user_token, user_id)
     print user_id + user_hashtag + result
-    taggedimages = instagramhub.get_pics(user_id, user_token, user_hashtag)
+    taggedimages = instagramhub.get_pics(user_id, user_token, user_hashtag[1:])
     print "Your username" + uname
     tweets = storage.getTweets(uname)
     print "Here are your tweets" + tweets
     print taggedimages
     return render_template('instagram.html', tweets = tweets, images = taggedimages, user_hashtag = user_hashtag)
-#deferred.defer(fetch_instagram_for_user, g.user.get_id(), count=20, _queue='instagram')
-#except (RuntimeError, TypeError, NameError):
-#    print "poops"
-#    return render_template('search.html')
-#return render_template('search.html')
-
 
 
 
