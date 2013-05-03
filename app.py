@@ -97,6 +97,7 @@ def register():
             if storage.validate(uname, password) == 3:
                 if password != "" and fullname != "" and user_hashtag != "" and uname != "" and len(tunames) != 0:
                     result = storage.addUser(uname, password, fullname, tunames, user_hashtag)
+                    storage.addTweets(uname)
                     success = ""
                     print "Your user info:"
                     print storage.getInfo(uname)
