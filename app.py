@@ -83,9 +83,11 @@ def register():
             password = request.form['pswd']
             fullname = request.form['name']
             user_hashtag = request.form['hashtag']
+            print user_hashtag
             tunames = []
             tname = request.form['tuname']
             tunames.append(tname)
+            for i in tunames print i
         
             for x in range(0, len(tunames)):
                 if pythontwitter2.tweets.check(tunames[x]) != 1:
