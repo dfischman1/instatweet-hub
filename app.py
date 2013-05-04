@@ -154,15 +154,12 @@ def instagram():
     except:
         res = "no token"
         return render_template('homepage.html', res = res)
+    print uname
     user_id = instagram_user['id']
     user_token = access_token
     result = storage.addInstagram(uname, user_token, user_id)
     print user_id + user_hashtag + result
-    taggedimages = instagramhub.get_pics(user_id, user_token, user_hashtag[1:])
-    print "Your username" + uname
-    
-    print "Here are your tweets" + tweets
-    print taggedimages
+    taggedimages = instagramhub.get_pics(user_id, user_token, user_hashtag[1:])    
     tweets = storage.getTweets(uname)
     return render_template('instagram.html', tweets = tweets, images = taggedimages, user_hashtag = user_hashtag)
 
