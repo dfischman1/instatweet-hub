@@ -166,7 +166,11 @@ def instagram():
     print '5'
     result = storage.addInstagram(uname, user_token, user_id)
     print '6'
-    print user_id + user_hashtag + result
+    print user_id
+    print '6.1'
+    print user_hashtag
+    print '6.2'
+    print result
     print '7'
     taggedimages = instagramhub.get_pics(user_id, user_token, user_hashtag[1:])
     print '8'
