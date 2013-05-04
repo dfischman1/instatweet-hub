@@ -83,11 +83,10 @@ def register():
             password = request.form['pswd']
             fullname = request.form['name']
             user_hashtag = request.form['hashtag']
-            print user_hashtag
             tunames = []
             tname = request.form['tuname']
             tunames.append(tname)
-            for i in tunames print i
+
         
             for x in range(0, len(tunames)):
                 if pythontwitter2.tweets.check(tunames[x]) != 1:
@@ -97,11 +96,13 @@ def register():
             if storage.validate(uname, password) == 3:
                 if password != "" and fullname != "" and user_hashtag != "" and uname != "" and len(tunames) != 0:
                     result = storage.addUser(uname, password, fullname, tunames, user_hashtag)
-                    storage.addTweets(uname)
+                    print storage.addTweets(uname)
                     success = ""
                     print "Your user info:"
                     print storage.getInfo(uname)
+                    print storage.getTweets(uname)
                     success = "You succesfully created a new account!"
+                    print success
                     return redirect(url_for('instaregister'))
                 #render_template('register.html', terror
             else:
@@ -142,6 +143,7 @@ def search():
             return render_template("instagram.html", tweets = tweets,user_hashtag = user_hashtag)
 @app.route('/instagram')
 def instagram():
+    tweets = storage.getTweets(uname)
     try:
         code = request.values.get('code')
     except:
@@ -159,7 +161,7 @@ def instagram():
     print user_id + user_hashtag + result
     taggedimages = instagramhub.get_pics(user_id, user_token, user_hashtag[1:])
     print "Your username" + uname
-    tweets = storage.getTweets(uname)
+    
     print "Here are your tweets" + tweets
     print taggedimages
     return render_template('instagram.html', tweets = tweets, images = taggedimages, user_hashtag = user_hashtag)
