@@ -144,6 +144,8 @@ def search():
 @app.route('/instagram')
 def instagram():
     print "starting results code"
+    print '1'
+    print user_hashtag
     try:
         code = request.values.get('code')
     except:
@@ -155,13 +157,21 @@ def instagram():
     except:
         res = "no token"
         return render_template('homepage.html', res = res)
+    print '2'
     print uname
+    print '3'
     user_id = instagram_user['id']
+    print '4'
     user_token = access_token
+    print '5'
     result = storage.addInstagram(uname, user_token, user_id)
+    print '6'
     print user_id + user_hashtag + result
-    taggedimages = instagramhub.get_pics(user_id, user_token, user_hashtag[1:])    
+    print '7'
+    taggedimages = instagramhub.get_pics(user_id, user_token, user_hashtag[1:])
+    print '8'
     tweets = storage.getTweets(uname)
+    print '9'
     return render_template('instagram.html', tweets = tweets, images = taggedimages, user_hashtag = user_hashtag)
 
 
