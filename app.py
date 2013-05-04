@@ -145,6 +145,8 @@ def instagram():
     print "starting results code"
     print '1'
     print user_hashtag
+    print code
+    print request.values.get('uname')
     try:
         code = request.values.get('code')
     except:
