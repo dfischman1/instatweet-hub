@@ -143,7 +143,6 @@ def search():
             return render_template("instagram.html", tweets = tweets,user_hashtag = user_hashtag)
 @app.route('/instagram')
 def instagram():
-    tweets = storage.getTweets(uname)
     try:
         code = request.values.get('code')
     except:
@@ -164,6 +163,7 @@ def instagram():
     
     print "Here are your tweets" + tweets
     print taggedimages
+    tweets = storage.getTweets(uname)
     return render_template('instagram.html', tweets = tweets, images = taggedimages, user_hashtag = user_hashtag)
 
 
