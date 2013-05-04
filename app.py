@@ -18,7 +18,7 @@ app = Flask(__name__)
 CONFIG = {
     'client_id': '2e1ab1ca522343a589a4dc84eb31af41',
     'client_secret': '67b832ed8a9b4e67b8696a3db0a69fd2',
-    'redirect_uri': 'http://ml7.stuycs.org:6376/instagram?user_hashtag=user_hashtag&uname=uname'
+    'redirect_uri': 'http://ml7.stuycs.org:6376/instagram/?user_hashtag=user_hashtag&uname=uname'
 }
 
 user_id = 0
@@ -102,7 +102,7 @@ def register():
                     print storage.getTweets(uname)
                     success = "You succesfully created a new account!"
                     print success
-                    return redirect(url_for('instaregister'))
+                    return redirect(url_for('instaregister'), uname=uname, user_hashtag=user_hashtag)
                 #render_template('register.html', terror
             else:
                 uerror = "Some of your info is invalid. Please try again."
