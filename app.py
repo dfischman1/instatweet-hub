@@ -126,13 +126,23 @@ def instaregister():
     if btn == "Instagram":
         uname = request.args.get('uname')
         user_hashtag=request.args.get('user_hashtag')
-        return redirect(instagram_client.get_authorize_url(scope=['basic']),
-                        uname=uname,
-                        user_hashtag=user_hashtag)
+        queries='?' + 'uname='+uname+'user_hashtag='+user_hashtag
+        api = client.InstagramAPI('client_id'='2e1ab1ca522343a589a4dc84eb31af41',
+                                  'client_secret'='67b832ed8a9b4e67b8696a3db0a69fd2',
+                                  'redirect_uri':'http://ml7.stuycs.org:6376/instagram' + queries)
+        return redirect(api.get_authorize_url(scope=['basic']))
     else:
         return redirect(url_for('login'))
 
+#CONFIG = {
+#    'client_id': '2e1ab1ca522343a589a4dc84eb31af41',
+#    'client_secret': '67b832ed8a9b4e67b8696a3db0a69fd2',
+#    'redirect_uri': 'http://ml7.stuycs.org:6376/instagram'
+#}
 
+#user_id = 0
+#user_token= 0
+#instagram_client = client.InstagramAPI(**CONFIG)
 
 
 @app.route('/search')
