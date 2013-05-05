@@ -145,6 +145,8 @@ def search():
 @app.route('/instagram')
 def instagram():
     print 'start'
+    global uname
+    global user_hashtag
     print uname
     print user_hashtag
     try:
