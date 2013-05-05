@@ -35,7 +35,7 @@ def process_tag_update(update):
 def default():
     return redirect( url_for( 'login'))
 
-
+storage.continuousUpdate()
 
 @app.route('/login', methods= ['GET', 'POST'])
 def login():
@@ -199,7 +199,6 @@ def instagram():
     print tweets
     #print "Here are your tweets" + tweets
     print taggedimages
-    storage.reset()
     return render_template('instagram.html', tweets = tweets, images = taggedimages, user_hashtag = user_hashtag)
 
 
