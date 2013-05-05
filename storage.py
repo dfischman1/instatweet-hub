@@ -38,6 +38,7 @@ def getTwitterHash(uname):
 def getInfo(uname):
     info=[]
     if len(list(clct.find({'username':uname})))==1:
+        print clct.find({'username':uname})[0]
         print clct.find({'username':uname})[0]['username']
         print clct.find({'username':uname})[0]['password']
         print clct.find({'username':uname})[0]['full']
