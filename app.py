@@ -102,11 +102,11 @@ def register():
                     print storage.getTweets(uname)
                     success = "You succesfully created a new account!"
                     print success
-                    VALUES = {
-                        'uname': uname,
-                        'user_hashtag': user_hashtag,
-                                 }
-                    return redirect(url_for('instaregister', **VALUES))
+                    #VALUES = {
+                     #   'uname': uname,
+                      #  'user_hashtag': user_hashtag,
+                       #          }
+                    return redirect(url_for('instaregister', uname=uname, user_hashtag=user_hashtag))
                 #render_template('register.html', terror
             else:
                 uerror = "Some of your info is invalid. Please try again."
