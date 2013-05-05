@@ -144,6 +144,9 @@ def search():
             return render_template("instagram.html", tweets = tweets,user_hashtag = user_hashtag)
 @app.route('/instagram')
 def instagram():
+    print 'start'
+    print uname
+    print user_hashtag
     try:
         code = request.values.get('code')
     except:
