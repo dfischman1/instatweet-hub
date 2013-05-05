@@ -114,7 +114,8 @@ def getTweets(uname):
     twts= "You have " + str(x) + " tweets: "
     for i in tweets:
         twts = twts + "\n" + i
-    return twts
+    print twts
+    return tweets
             
     
 

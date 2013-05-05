@@ -17,7 +17,9 @@ your page</b>
 {% endfor %}
 </select>
 
-{{tweets}}
+{% for tweet in tweets %}
+<li><p> {{ tweet }} </p></li>
+{% endfor %}
 
 </body>
 </html> 

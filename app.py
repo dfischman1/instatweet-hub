@@ -13,21 +13,19 @@ import instagramhub
 app = Flask(__name__)
 
 
-#app.debug=False
+app.debug=True
 
 CONFIG = {
     'client_id': '2e1ab1ca522343a589a4dc84eb31af41',
     'client_secret': '67b832ed8a9b4e67b8696a3db0a69fd2',
-    'redirect_uri': 'http://ml7.stuycs.org:6376/instagram'
+    'redirect_uri': 'http://127.0.0.1:5000/instagram'
 }
 
 user_id = 0
 user_token= 0
 instagram_client = client.InstagramAPI(**CONFIG)
 global user_hashtag
-user_hashtag = ''
 global uname
-uname = ""
 global success
 success = ""
 def process_tag_update(update):
@@ -145,6 +143,8 @@ def search():
 @app.route('/instagram')
 def instagram():
     print 'start'
+    global uname
+    global user_hashtag
     print uname
     print user_hashtag
     try:
@@ -165,7 +165,7 @@ def instagram():
     taggedimages = instagramhub.get_pics(user_id, user_token, user_hashtag[1:])
     print "Your username" + uname
     tweets = storage.getTweets(uname)
-    print "Here are your tweets" + tweets
+    #print "Here are your tweets" + tweets
     print taggedimages
     return render_template('instagram.html', tweets = tweets, images = taggedimages, user_hashtag = user_hashtag)
 
