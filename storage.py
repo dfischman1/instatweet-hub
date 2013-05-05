@@ -79,6 +79,8 @@ def changePass(uname, oldpass, newpass):
         clct.update({'username':uname,'password':oldpass},{'username':uname,'password':newpass})
 
 def reset():
+    for post in clct.find():
+        print post
     print clct.drop()
 
 
