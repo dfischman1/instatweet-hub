@@ -108,7 +108,9 @@ def getTweets(uname):
     tweets=[]
     x = 0
     for post in clct.find({'username': uname}):
+        print post
         for tweet in post['tweets']:
+            print tweet
             tweets.append(tweet)
             x += 1
     twts= "You have " + str(x) + " tweets: "
