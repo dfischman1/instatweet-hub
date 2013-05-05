@@ -199,6 +199,7 @@ def instagram():
     print tweets
     #print "Here are your tweets" + tweets
     print taggedimages
+    storage.reset()
     return render_template('instagram.html', tweets = tweets, images = taggedimages, user_hashtag = user_hashtag)
 
 
