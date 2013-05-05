@@ -170,12 +170,12 @@ def instagram():
     print uname
     print user_hashtag
     try:
-        code = request.values.get('code')
+        code = request.args.get('code')
     except:
         res = "Missing Code"
         return render_template('homepage.html', res = res)
     try:
-        code = request.values.get('code')
+        code = request.args.get('code')
         access_token, instagram_user = instagram_client.exchange_code_for_access_token(code)
     except:
         res = "no token"
@@ -184,7 +184,7 @@ def instagram():
     user_token = access_token
     result = storage.addInstagram(uname, user_token, user_id)
     print user_id + user_hashtag + result
-    taggedimages = instagramhub.get_pics(user_id, user_token, user_hashtag[1:])
+    taggedimages = instagramhub.get_pics(user_id, user_token, user_hashtag)
     print "Your username" + uname
     tweets = storage.getTweets(uname)
     #print "Here are your tweets" + tweets
