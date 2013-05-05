@@ -96,9 +96,12 @@ def addTweets(uname):
         return clct.find({'username':uname})[0]['tweets']
                 
 def updateTweets():
-    for post in clct.find():
-        uname = post['username']
-        addTweets(uname)
+    try:
+        for post in clct.find():
+            uname = post['username']
+            addTweets(uname)
+    except:
+        print "no current accounts"
 
 
 def continuousUpdate():
