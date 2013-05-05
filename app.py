@@ -179,6 +179,7 @@ def instagram():
     try:
         print '1'
         code = request.args.get('code')
+        print code
         print api
         access_token, instagram_user = api.exchange_code_for_access_token(code)
         print '2'
