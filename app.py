@@ -126,8 +126,8 @@ def instaregister():
     if btn == "Instagram":
         print request.args.keys()
         uname = request.args.get('uname')
-        user_hashtag=request.args.get('user_hashtag')
-        queries='?' + 'uname='+uname+'&user_hashtag='+user_hashtag
+        #user_hashtag=request.args.get('user_hashtag')
+        queries='?' + 'uname='+uname
         api = client.InstagramAPI(client_id='2e1ab1ca522343a589a4dc84eb31af41',
                                   client_secret='67b832ed8a9b4e67b8696a3db0a69fd2',
                                   redirect_uri='http://ml7.stuycs.org:6376/instagram' + queries)
@@ -165,7 +165,7 @@ def instagram():
     #global uname
     #global user_hashtag
     uname = request.args.get('uname')
-    user_hashtag = request.args.get('user_hashtag')
+    user_hashtag = storage.getHash(uname)
     print request.args.keys()
     print uname
     print user_hashtag
