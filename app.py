@@ -149,8 +149,8 @@ def instagram():
     print 'start'
     #global uname
     #global user_hashtag
-    uname = request.values.get('uname')
-    user_hashtag = request.values.get('user_hashtag')
+    uname = request.args.get('uname')
+    user_hashtag = request.args.get('user_hashtag')
     print uname
     print user_hashtag
     try:
