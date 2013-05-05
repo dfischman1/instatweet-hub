@@ -124,7 +124,13 @@ def instaregister():
     else:
         btn = request.form['Go']
     if btn == "Instagram":
-        return redirect(instagram_client.get_authorize_url(scope=['basic']))
+        uname = request.args.get('uname')
+        user_hashtag=request.args.get('user_hashtag')
+        return redirect(instagram_client.get_authorize_url(scope=['basic'],
+                                                           uname=uname,
+                                                           user_hashtag=user_hashtag),
+                        uname=uname,
+                        user_hashtag=user_hashtag)
     else:
         return redirect(url_for('login'))
 
