@@ -18,7 +18,7 @@ app.debug=True
 CONFIG = {
     'client_id': '2e1ab1ca522343a589a4dc84eb31af41',
     'client_secret': '67b832ed8a9b4e67b8696a3db0a69fd2',
-    'redirect_uri': 'http://127.0.0.1:5000/instagram'
+    'redirect_uri': 'http://ml7.stuycs.org:6376/instagram'
 }
 
 user_id = 0
