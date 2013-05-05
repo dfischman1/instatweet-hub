@@ -25,9 +25,7 @@ user_id = 0
 user_token= 0
 instagram_client = client.InstagramAPI(**CONFIG)
 global user_hashtag
-user_hashtag = ''
 global uname
-uname = ""
 global success
 success = ""
 def process_tag_update(update):
