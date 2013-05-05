@@ -51,8 +51,10 @@ def getInfo(uname):
         
 def addInstagram(uname, token, instaid):
     if len(list(clct.find({'username':uname})))==1:
-        clct.update({'username':uname,'instaid':'', 'instatoken':''},
-                    {'username':uname,'instaid':instaid,'instatoken':token})
+        clct.update({'username':uname},
+                            {$set: {'instaid':instaid}})
+        clct.update({'username':uname},
+                            {$set: {'instatoken':token}})
         print clct.find({'username':uname})[0].keys()
         return "Successful Update"
     else:   
