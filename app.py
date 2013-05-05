@@ -173,13 +173,13 @@ def instagram():
     print request.args.get('code')
     try:
         code = request.args.get('code')
-        print code
     except:
         res = "Missing Code"
         return render_template('homepage.html', res = res)
     try:
         print '1'
         code = request.args.get('code')
+        print api.exchange_code_for_access_token(code)
         access_token, instagram_user = api.exchange_code_for_access_token(code)
         print '2'
         print access_token
