@@ -192,6 +192,7 @@ def instagram():
     print user_id + user_hashtag + result
     taggedimages = instagramhub.get_pics(user_id, user_token, user_hashtag)
     print "Your username" + uname
+    print storage.getInfo(uname)
     storage.addTweets(uname)
     tweets = storage.getTweets(uname)
     print tweets
