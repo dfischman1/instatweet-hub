@@ -119,6 +119,7 @@ def register():
 
 @app.route('/instaregister', methods = ['GET', 'POST'])
 def instaregister():
+    global api
     if request.method == 'GET':
         return render_template('instaregister.html')
     else:
@@ -169,6 +170,7 @@ def instagram():
     print request.args.keys()
     print uname
     print user_hashtag
+    print request.args.get('code')
     try:
         code = request.args.get('code')
     except:
@@ -176,7 +178,7 @@ def instagram():
         return render_template('homepage.html', res = res)
     try:
         code = request.args.get('code')
-        access_token, instagram_user = instagram_client.exchange_code_for_access_token(code)
+        access_token, instagram_user = api.exchange_code_for_access_token(code)
     except:
         res = "no token"
         return render_template('homepage.html', res = res)
