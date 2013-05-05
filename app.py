@@ -106,7 +106,7 @@ def register():
                         'uname': uname,
                         'user_hashtag': user_hashtag,
                                  }
-                    return redirect(url_for('instaregister'), **VALUES)
+                    return redirect(url_for('instaregister', **VALUES))
                 #render_template('register.html', terror
             else:
                 uerror = "Some of your info is invalid. Please try again."
