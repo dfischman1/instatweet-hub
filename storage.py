@@ -88,6 +88,7 @@ def addTweets(uname):
             matches = pythontwitter2.tweets.get_easy(i, hashtag)
             for x in matches:
                 clct.update({ 'username' : uname }, {'$addToSet': { 'tweets': x} })
+        return clct.find({'username':uname})[0]['tweets']
                 
 def updateTweets():
     for post in clct.find():
@@ -117,17 +118,25 @@ def getTweets(uname):
             
     
 
-reset()
-#addUser('Daniel','dobby','Daniel Teehan', 'leopoldsg94')
-addUser('Daelin','winky','Ryan Teehan', ['RyanTeehan','leopoldsg94'], '#csproject')
-print validate('Daelin', 'winky')
 
-print getTweets('Daelin')
-addTweets('Daelin')
+#reset()
+#if validate('Daelin', 'winky') == 3:
+#    addUser('Daelin','winky','Ryan Teehan', ['RyanTeehan'], '#csproject')#
+#
+#    print addTweets('Daelin')
+#    success = ""
+#    print "Your user info:"
+#    getInfo('Daelin')
+#    print getTweets('Daelin')
+#    success = "You succesfully created a new account!"
 
-#print getTweets('Daniel')
-print getTweets('Daelin')
-getTwitterHash('Daelin')
+
+
+
+#print validate('Daelin', 'winky')
+#addTweets('Daelin')
+#print getTweets('Daelin')
+
 #if __name__=="__main__":
 #    addUser("daniel teehan", 'daelin', 'daelin fisch', "@dfisch")
 #    addUser("Leopold","specswag", "leo spon", "@leo")
