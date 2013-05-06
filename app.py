@@ -42,6 +42,8 @@ def login():
     if request.method == 'GET':
         return render_template('homepage.html', success = success)
     else:
+        global uname
+        global password
         uname = request.form['username']
         password = request.form['password']
         res = 0
