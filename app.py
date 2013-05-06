@@ -85,8 +85,15 @@ def register():
             fullname = request.form['name']
             user_hashtag = request.form['hashtag']
             tunames = []
-            tname = request.form['tuname']
-            tunames.append(tname)
+            if request.form['tuname1'] != "":
+                tunames.append(request.form['tuname1'])
+             if request.form['tuname2'] != "":
+                tunames.append(request.form['tuname2'])
+             if request.form['tuname3'] != "":
+                 tunames.append(request.form['tuname3'])
+                
+            
+            
 
         
             for x in range(0, len(tunames)):
