@@ -50,7 +50,7 @@ def login():
         if uname and password:
             res = storage.validate(uname, password)
         if res == 1:
-            return redirect(url_for("search"))
+            return redirect(url_for("search", uname=uname))
         else:
             return render_template('homepage.html', res = "retry or register")
 
