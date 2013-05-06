@@ -85,12 +85,24 @@ def register():
             fullname = request.form['name']
             user_hashtag = request.form['hashtag']
             tunames = []
-            if request.form['tuname1'] != "":
-                tunames.append(request.form['tuname1'])
-             if request.form['tuname2'] != "":
-                tunames.append(request.form['tuname2'])
-             if request.form['tuname3'] != "":
-                 tunames.append(request.form['tuname3'])
+            x = request.form['tuname']
+           
+            if x != "":
+                
+                 tunames.append(x)
+
+            x = request.form['tuname2']
+           
+            if x != "":
+                
+                 tunames.append(x)
+
+            x = request.form['tuname3']
+           
+            if x != "":
+                 tunames.append(x)
+        
+            print "hello" + tunames[0] + tunames[1] + tunames[2]
                 
             
             
@@ -98,7 +110,7 @@ def register():
         
             for x in range(0, len(tunames)):
                 if pythontwitter2.tweets.check(tunames[x]) != 1:
-                    uerror = "Some of your info isn't valid. Try again."
+                    uerror = "Some of your twitter info isn't valid. Try again."
                     result = 0
                     return render_template('register.html', uerror = uerror)
             if storage.validate(uname, password) == 3:
@@ -118,7 +130,8 @@ def register():
                     return redirect(url_for('instaregister', uname=uname, user_hashtag=user_hashtag))
                 #render_template('register.html', terror
             else:
-                uerror = "Some of your info is invalid. Please try again."
+                print "hello" +  tunames[0]
+                uerror = "Some of your user info is invalid. Please try again."
                 return render_template('register.html', uerror = uerror)
                 #if result == 1:
                 #    success = "You succesfully created a new account!"
