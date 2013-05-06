@@ -102,7 +102,7 @@ def register():
             if x != "":
                  tunames.append(x)
         
-            print "hello" + tunames[0] + tunames[1] + tunames[2]
+            #print "hello" + tunames[0] + tunames[1] + tunames[2]
                 
             
             
