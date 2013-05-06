@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<link href="static/css/stylestuff.css" rel="stylesheet" type="text/css">
+
+<link rel="stylesheet" href="static/css/foundation.css" />
+<link rel = "stylesheet" href = "static/css/stylestuff.css"/>
 <html>
 <head> 
 <title> Home </title>
@@ -28,15 +30,15 @@ by The Broken Keyboards
 Login </b>
 <br>
 <form action= "" method = "POST">
-<input type="text" id="username" name="username" value="username"></input> <br>
+<input type="text" id="username" name="username" value=""></input> <br>
 <input type="password" id="password" name="password" value="password"></input> <br>
-<input type="submit" id="login" value="Go"></input>
+<button class = "button" type="submit" id="login" value = "Submit" name ="Submit">Login</button>
 </div>
 <br>
 </form>
 
 <form action = "register" method = "GET">
-<button type = "submit" value = "register" name = "register">Register</button>
+<a href="/register" class="button">Register</a>
 </form>
 
 <p> {{ res }} </p>

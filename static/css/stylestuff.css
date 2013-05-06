@@ -1,9 +1,9 @@
-body {background-color: black;
-	color: white;
+body {background-color: yellow;
+	color: black;
 	font-family: Comic Sans MS;}
 
-h1   {border: thick solid white;
-	background-color: black;
+h1   {border: thick solid black;
+	background-color: blue;
 	font-family: Comic Sans MS;}
 h1 { text-align: center;}
 h2 { text-align: center;
