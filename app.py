@@ -18,7 +18,7 @@ app.debug=True
 CONFIG = {
     'client_id': '2e1ab1ca522343a589a4dc84eb31af41',
     'client_secret': '67b832ed8a9b4e67b8696a3db0a69fd2',
-    'redirect_uri': 'http://ml7.stuycs.org:6378/instagram'
+    'redirect_uri': 'http://ml7.stuycs.org:6379/instagram'
 }
 
 user_id = 0
@@ -50,7 +50,7 @@ def login():
         if uname and password:
             res = storage.validate(uname, password)
         if res == 1:
-            return redirect(url_for("search"))
+            return redirect(url_for("search", uname=uname))
         else:
             return render_template('homepage.html', res = "retry or register")
 
@@ -153,7 +153,7 @@ def instaregister():
         queries='?' + 'uname='+uname
         api = client.InstagramAPI(client_id='2e1ab1ca522343a589a4dc84eb31af41',
                                   client_secret='67b832ed8a9b4e67b8696a3db0a69fd2',
-                                  redirect_uri='http://ml7.stuycs.org:6378/instagram' + queries)
+                                  redirect_uri='http://ml7.stuycs.org:6379/instagram' + queries)
         return redirect(api.get_authorize_url(scope=['basic']))
     else:
         return redirect(url_for('login'))
