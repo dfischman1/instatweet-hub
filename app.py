@@ -143,7 +143,8 @@ def register():
 def instaregister():
     global api
     if request.method == 'GET':
-        return render_template('instaregister.html', res = res)
+        uname = request.args.get('uname')
+        return render_template('instaregister.html', res = res, uname=uname)
     else:
         btn = request.form['Go']
     if btn == "Instagram":
