@@ -183,7 +183,7 @@ def search():
             return render_template("instagram.html", tweets = tweets, images = pics, user_hashtag = user_hashtag)
         except:
             tweets = storage.getTweets(uname)
-            print "Here are your tweets" + tweets
+            print tweets
             return render_template("instagram.html", tweets = tweets,user_hashtag = user_hashtag)
 @app.route('/instagram')
 def instagram():
