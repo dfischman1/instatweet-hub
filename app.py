@@ -9,7 +9,7 @@ from instagram import client, subscriptions
 import pythontwitter2
 import storage
 import instagramhub
-res
+res = 0
 app = Flask(__name__)
 
 
