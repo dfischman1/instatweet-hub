@@ -180,11 +180,11 @@ def search():
             pics = instagramhub.user_pics(uname)
             tweets = storage.getTweets(uname)
             print storage.getTweets(uname)
-            return render_template("instagram.html", tweets = tweets, images = pics, user_hashtag = user_hashtag)
+            return render_template("instagram.html", tweets = tweets, images = pics)
         except:
             tweets = storage.getTweets(uname)
             print tweets
-            return render_template("instagram.html", tweets = tweets,user_hashtag = user_hashtag)
+            return render_template("instagram.html", tweets = tweets)
 @app.route('/instagram')
 def instagram():
     print 'start'
