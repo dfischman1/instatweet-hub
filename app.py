@@ -180,7 +180,12 @@ def search():
             pics = instagramhub.user_pics(uname)
             tweets = storage.getTweets(uname)
             print storage.getTweets(uname)
-            return render_template("instagram.html", tweets = tweets, images = pics)
+            queries='?'+'uname='+uname
+            api = client.InstagramAPI(client_id='2e1ab1ca522343a589a4dc84eb31af41',
+                                      client_secret='67b832ed8a9b4e67b8696a3db0a69fd2',
+                                      redirect_uri='http://ml7.stuycs.org:6379/instagram'+ queries)
+            return redirect(api.get_authorize_url(scope=['basic']))
+            #return render_template("instagram.html", tweets = tweets, images = pics)
         except:
             tweets = storage.getTweets(uname)
             print tweets
