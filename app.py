@@ -173,12 +173,13 @@ def instaregister():
 @app.route('/search')
 def search():
     uname = request.args.get('uname')
+    storage.addTweets(uname)
     if request.method == 'GET':
         try:
             storage.getInstaInfo(uname)
             pics = instagramhub.user_pics(uname)
             tweets = storage.getTweets(uname)
-            print "Here are your tweets" + tweets
+            print storage.getTweets(uname)
             return render_template("instagram.html", tweets = tweets, images = pics, user_hashtag = user_hashtag)
         except:
             tweets = storage.getTweets(uname)
@@ -199,7 +200,7 @@ def instagram():
         code = request.args.get('code')
     except:
         res = "Missing Code, Please try again"
-        return redirect(url_for('instaregister', res = res))
+        return redirect(url_for('instaregister', res = res, uname=uname))
     try:
         print '1'
         code = request.args.get('code')
