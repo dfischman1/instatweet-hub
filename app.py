@@ -211,7 +211,7 @@ def instagram():
         print access_token
     except:
         res = "No token, please try again"
-        return redirect(url_for('instaregister', res = res))
+        return redirect(url_for('instaregister', res = res, uname = uname))
     user_id = instagram_user['id']
     user_token = access_token
     result = storage.addInstagram(uname, user_token, user_id)
