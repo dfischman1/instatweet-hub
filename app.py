@@ -179,8 +179,9 @@ def search():
             storage.getInstaInfo(uname)
             pics = instagramhub.user_pics(uname)
             tweets = storage.getTweets(uname)
+            photo = tweets[1]
             print storage.getTweets(uname)
-            return render_template("instagram.html", tweets = tweets, images = pics)
+            return render_template("instagram.html", tweets = tweets, images = pics, photo = photo)
         except:
             tweets = storage.getTweets(uname)
             print tweets
@@ -222,6 +223,7 @@ def instagram():
     result = storage.addInstagram(uname, user_token, user_id)
     print user_id + user_hashtag + result
     taggedimages = instagramhub.get_pics(user_id, user_token, user_hashtag)
+    photo = taggedimages[1]
     print "Your username" + uname
     print storage.getInfo(uname)
     storage.addTweets(uname)
@@ -229,7 +231,7 @@ def instagram():
     print tweets
     #print "Here are your tweets" + tweets
     print taggedimages
-    return render_template('instagram.html', tweets = tweets, images = taggedimages, user_hashtag = user_hashtag)
+    return render_template('instagram.html', tweets = tweets, images = taggedimages, user_hashtag = user_hashtag, photo = photo)
 
 
 import os
