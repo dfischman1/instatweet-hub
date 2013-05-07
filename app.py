@@ -197,7 +197,7 @@ def instagram():
         code = request.args.get('code')
     except:
         res = "Missing Code, Please try again"
-        return redirect(url_for('instaregister', res = res)
+        return redirect(url_for('instaregister', res = res))
     try:
         print '1'
         code = request.args.get('code')
@@ -208,7 +208,7 @@ def instagram():
         print access_token
     except:
         res = "No token, please try again"
-        return redirect(url_for('instaregister', res = res)
+        return redirect(url_for('instaregister', res = res))
     user_id = instagram_user['id']
     user_token = access_token
     result = storage.addInstagram(uname, user_token, user_id)
