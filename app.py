@@ -172,6 +172,7 @@ def instaregister():
 
 @app.route('/search')
 def search():
+    uname = request.args.get('uname')
     if request.method == 'GET':
         try:
             storage.getInstaInfo(uname)
