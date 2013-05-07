@@ -9,7 +9,7 @@ from instagram import client, subscriptions
 import pythontwitter2
 import storage
 import instagramhub
-
+res
 app = Flask(__name__)
 
 
@@ -143,7 +143,7 @@ def register():
 def instaregister():
     global api
     if request.method == 'GET':
-        return render_template('instaregister.html')
+        return render_template('instaregister.html', res = res)
     else:
         btn = request.form['Go']
     if btn == "Instagram":
@@ -196,8 +196,8 @@ def instagram():
     try:
         code = request.args.get('code')
     except:
-        res = "Missing Code"
-        return render_template('homepage.html', res = res)
+        res = "Missing Code, Please try again"
+        return redirect(url_for('instaregister', res = res)
     try:
         print '1'
         code = request.args.get('code')
@@ -207,8 +207,8 @@ def instagram():
         print '2'
         print access_token
     except:
-        res = "no token"
-        return render_template('homepage.html', res = res)
+        res = "No token, please try again"
+        return redirect(url_for('instaregister', res = res)
     user_id = instagram_user['id']
     user_token = access_token
     result = storage.addInstagram(uname, user_token, user_id)
