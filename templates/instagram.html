@@ -10,27 +10,27 @@ by The Broken Keyboards
 <b>
 your page</b>
 <br>
-<body>
-<!-- 
+<body> 
 <div id="tweets" style="background-color:#EEEEEE;height:200px;width:300px;float:left;">
 <h2> {{ user_hashtag }} </h2>
 {% for tweet in tweets %}
 <li><p> {{ tweet }} </p></li>
 {% endfor %}
 </div>
-!-->
-<div id = "images" style="background-color:yellow;height:2000px;width:600px" 
-<p>images: </p> 
-{% for image in images and for tweet in tweets %}
-<li> <img src= '{{ image }}' alt= '{{ user_hashtag }}' width="304" height="228"> 
-<p> {{ tweet }} </p>
-</li>
+<div id = "images" style="background-color:yellow;height:2000px;width:306px;float:left;".
+<p>images: </p>
+{% for image in images %}
+<li> <img src= '{{ image }}' alt= '{{ user_hashtag }}' width="304" height="228"> </li>
 {% endfor %}
+</select>
 </div>
 </body>
 </html> 
 <style>
 body{
 background-image:url('{{ photo }}')
+background-size:500px 500px;
+background-repeat:no-repeat;
+background-position:center;
 }
 </style> 
