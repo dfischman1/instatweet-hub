@@ -10,7 +10,7 @@ by The Broken Keyboards
 <b>
 your page</b>
 <br>
-<div id = 'main' style='background-image:url('{{ photo }}')> 
+<body> 
 <div id="tweets" style="background-color:#EEEEEE;height:200px;width:300px;float:left;">
 <h2> {{ user_hashtag }} </h2>
 {% for tweet in tweets %}
@@ -24,5 +24,10 @@ your page</b>
 {% endfor %}
 </select>
 </div>
-</div>
+</body>
 </html> 
+<style>
+body{
+background-image:url('{{ photo }}')
+}
+</style> 
