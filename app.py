@@ -223,7 +223,7 @@ def instagram():
     result = storage.addInstagram(uname, user_token, user_id)
     print user_id + user_hashtag + result
     taggedimages = instagramhub.get_pics(user_id, user_token, user_hashtag)
-    photo = taggedimages[1]
+    photo = taggedimages[0]
     print "Your username" + uname
     print storage.getInfo(uname)
     storage.addTweets(uname)
