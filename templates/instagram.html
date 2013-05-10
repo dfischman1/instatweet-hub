@@ -10,16 +10,18 @@ by The Broken Keyboards
 <b>
 your page</b>
 <br>
-<p>images: </p>
-{% for image in images %}
-<li> <img src= '{{ image }}' alt= '{{ user_hashtag }}' width="304" height="228"> </li>
-
-{% endfor %}
-</select>
-
+<div id="tweets" style="background-color:#EEEEEE;height:200px;width:150px;float:left;">
+<h2> {{ user_hashtag }} </h2>
 {% for tweet in tweets %}
 <li><p> {{ tweet }} </p></li>
 {% endfor %}
+</div>
+<div id = "images" style="background-color:yellow;height:200px;width:600px;float:left;".
+<p>images: </p>
+{% for image in images %}
+<li> <img src= '{{ image }}' alt= '{{ user_hashtag }}' width="304" height="228"> </li>
+{% endfor %}
+</select>
 
 </body>
 </html> 
