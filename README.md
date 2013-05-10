@@ -6,4 +6,4 @@ Roundtable is a social networking website that intends to provide a place for an
 
 Group members: Leopold Spohngellert, Daniel Teehan, Daelin Fischman, and Patrick So
 
-The project has some kinks, but you can find it [http://ml7.stuycs.org:6378](http://ml7.stuycs.org:6378).
+The project has some kinks, but you can find it at [http://ml7.stuycs.org:6379](http://ml7.stuycs.org:6379).
